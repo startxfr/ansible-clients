@@ -11,7 +11,7 @@
         url: "{{ sc_ocp_download_baseurl }}/{{ sc_ocp_release }}/openshift-client-linux-{{ sc_ocp_release }}.tar.gz"
         dest: "{{ sc_ocp_download_tmpdir }}/openshift-client-linux-{{ sc_ocp_release }}.tar.gz"
         timeout: 600
-        force : true
+        force: true
         validate_certs: false
       notify: "remove temp"
     - name: "create : Unarchive content into {{ sc_ocp_download_tmpdir }}"
