@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ../ocp
+      vars:
+        sc_ocp_action: 'create'
+        sc_ocp_release: "4.9.8"
+        sc_ocp_binaries: [ "kubectl" ]
+      tags:
+        - create
+    - role: ../ocp
+      vars:
+        sc_ocp_action: 'create'
+        sc_ocp_release: "4.9.6"
+        sc_ocp_binaries: [ "oc" ]
+      tags:
+        - create
+    - role: ../ocp
+      vars:
+        sc_ocp_action: 'delete'
+        sc_ocp_release: "4.9.6"
+        sc_ocp_binaries: [ "oc" ]
+      tags:
+        - delete

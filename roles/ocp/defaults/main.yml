@@ -1,0 +1,17 @@
+---
+# Action to perfom on this role
+sc_ocp_action: "create"
+
+# targeted release
+sc_ocp_release: "4.9.8"
+# list of binaries to install
+sc_ocp_binaries:
+  - kubectl
+  - oc
+
+#  URL for dowloading binaries
+sc_ocp_download_baseurl: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp"
+# Temporary directory used when downloading binaries
+sc_ocp_download_tmpdir: "/tmp/ocp"
+# Destination of the binary and aliases
+sc_ocp_bin_directory: "/usr/local/bin"

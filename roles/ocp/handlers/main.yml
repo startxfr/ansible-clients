@@ -1,0 +1,7 @@
+---
+# handlers file for gitops 
+- name: "delete : Remove the temporary files"
+  listen: "remove temp"
+  ansible.builtin.file:
+    path: "{{ sc_ocp_download_tmpdir }}"
+    state: absent 

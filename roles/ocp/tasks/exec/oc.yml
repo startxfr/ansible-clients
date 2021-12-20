@@ -1,0 +1,8 @@
+---
+- name: "exec : oc : Execute the native oc command"
+  ansible.builtin.shell:
+    cmd: |-
+      {{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }} {{ cmd | default("version") }}
+    executable: /bin/bash
+    chdir: "{{ mm_wc_path }}"
+  register: oc_exec_details

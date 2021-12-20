@@ -1,0 +1,15 @@
+---
+- name: "init : Check if {{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }} exist"
+  stat:
+    path: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
+  register: ocp_details_kubectl
+  tags:
+    - init
+    - kubectl
+- name: "init : Check if {{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }} exist"
+  stat:
+    path: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
+  register: ocp_details_oc
+  tags:
+    - init
+    - oc

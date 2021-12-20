@@ -1,0 +1,24 @@
+### REQUIRED
+namespace: startx
+name: client
+version: 0.0.1
+readme: README.md
+license:
+- GPL-2.0-or-later
+# license_file: 'LICENSE.md'
+description: >-
+  Collection of ansible roles used for client interaction with running services.
+authors:
+- Christophe LARUE <clarue@startx.fr>
+- Startx dev <dev@startx.fr>
+tags: 
+- startx
+- client
+- api
+dependencies: {}
+repository: https://gitlab.com/startx1/ansible/client
+documentation: https://gitlab.com/startx1/ansible/client
+homepage: https://gitlab.com/startx1/ansible/client
+issues: https://gitlab.com/startx1/ansible/client/-/issues/new
+build_ignore:
+- '*.tar.gz'
