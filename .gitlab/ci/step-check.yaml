@@ -31,6 +31,7 @@ markdown:
     - main
     - devel
     - stable
+    - 0.*
 
 # Readthedocs check on master branch
 readthedocs:

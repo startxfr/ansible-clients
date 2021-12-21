@@ -15,13 +15,17 @@ test_dir=/tmp/test-ansible-collection
 # Display the requirements checks
 function DisplayCheckRequirementsAnsible {
     echo "======== CHECK REQUIREMENTS"
-    DoCheckCheckRequirementsFileExist LICENSE
     DoCheckCheckRequirementsFileExist README.md
     DoCheckCheckRequirementsDirectoryExist docs
     DoCheckCheckRequirementsFileExist docs/index.md
-    DoCheckCheckRequirementsFileExecutable podman-helper.sh
-    DoCheckCheckRequirementsFileExecutable okd-helper.sh
+    DoCheckCheckRequirementsFileExist .gitlab/ci/startx-library.sh
     DoCheckCheckRequirementsFileExist .gitlab/ci/startx-ansible-library.sh
+    DoCheckCheckRequirementsFileExist galaxy.yml
+    DoCheckCheckRequirementsDirectoryExist roles
+    DoCheckCheckRequirementsDirectoryExist meta
+    DoCheckCheckRequirementsFileExist meta/runtime.yml
+    DoCheckCheckRequirementsFileExist plugins/README.md
+    DoCheckCheckRequirementsFileExist tests/test.yml
 }
 
 
@@ -45,9 +49,8 @@ function DisplayCheckMarkdownAnsible {
 # Display the shellcheck checks
 function DisplayCheckShellcheckAnsible {
     echo "======== CHECK SHELL SYNTAX"
-    shellcheck podman-helper.sh
-    shellcheck okd-helper.sh
     shellcheck .gitlab/ci/startx-ansible-library.sh
+    shellcheck .gitlab/ci/startx-library.sh
 }
 
 
