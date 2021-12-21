@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# This is the GitLab CI/CD configuration file for sxcm kubernetes cluster manager.
+#
+# For more information, see: https://sxcm.readthedocs.io
+
+# Global environment variables
+variables:
+  SXGLCI_GIT_DOMAIN: gitlab.com
+  SXGLCI_GIT_SSH_USER: git@gitlab.com
+  SX_VERBOSE: "true"
+  SX_DEBUG: "true"
+
+# Default container image
+image: "quay.io/startx/runner-ansible:alpine3"
+
+# Include library
+include:
+  - local: .gitlab/ci/startx-library.yaml
+  - local: .gitlab/ci/startx-ansible-library.yaml
+  - local: .gitlab/ci/step-check.yaml
+  - local: .gitlab/ci/step-test.yaml
+  - local: .gitlab/ci/step-build.yaml
+  - local: .gitlab/ci/step-publish.yaml
+
+# Stagging for this pipeline
+stages:
+  - "check"
+  - "test"
+  - "build"
+  - "publish"

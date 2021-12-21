@@ -1,7 +1,7 @@
 ### REQUIRED
 namespace: startxfr
 name: client
-version: 0.0.2
+version: 0.0.3
 readme: README.md
 license:
 - GPL-2.0-or-later
@@ -22,8 +22,8 @@ dependencies: {}
 #     "other_namespace.collection2": ">=2.0.0,<3.0.0"
 #     "anderson55.my_collection": "*" 
 repository: https://gitlab.com/startx1/ansible/client
-documentation: https://gitlab.com/startx1/ansible/client
-homepage: https://gitlab.com/startx1/ansible/client
+documentation: https://startx-ansible-client.readthedocs.io
+homepage: https://startx-ansible-client.readthedocs.io/
 issues: https://gitlab.com/startx1/ansible/client/-/issues/new
 build_ignore:
 - '*.tar.gz'

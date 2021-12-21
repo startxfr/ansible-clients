@@ -1,0 +1,10 @@
+##
+## STAGES
+##
+
+# Publish to the galaxy repository
+publish-galaxy:
+  stage: "publish"
+  extends: .collection-publish
+  only:
+    - 0.*
