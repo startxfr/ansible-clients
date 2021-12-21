@@ -1,3 +1,3 @@
-# Ansible Collection - startx.client
+# Ansible Collection - startxfr.client
 
 Documentation for the collection.

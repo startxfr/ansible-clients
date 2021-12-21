@@ -1,5 +1,5 @@
 ### REQUIRED
-namespace: startx
+namespace: startxfr
 name: client
 version: 0.0.1
 readme: README.md
