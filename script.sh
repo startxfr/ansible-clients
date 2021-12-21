@@ -3,7 +3,7 @@
 # Configure collection
 namespace=startxfr
 collection=client
-version=0.0.1
+version=0.0.2
 output_dir=.output
 test_dir=/tmp/test-client
 
@@ -24,6 +24,7 @@ else
 fi
 cd - || exit
 rm -rf ${test_dir}
+export ANSIBLE_CONFIG=$(pwd)/ansible-private.cfg
 
 # Publish the client collection
 ansible-galaxy collection publish ${output_dir}/${namespace}-${collection}-${version}.tar.gz

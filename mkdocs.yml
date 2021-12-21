@@ -1,0 +1,19 @@
+site_name: STARTX Ansible collection - Clients
+site_description: Documentation for the startxfr.client ansible collection
+site_author: STARTX
+# site_favicon: img/favicon.ico
+use_directory_urls: true
+theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+    - yaml
+    - bash
+    include_homepage_in_sidebar: false
+# pages:
+# - ['index.md', 'Introduction']
+# - ['releases.md', 'Release', 'Release process']
+# - ['history.md', 'Release', 'Release history']
+# - ['charts/cluster-3scale.md', 'Cluster charts', '3scale']
+markdown_extensions: 
+- smarty
