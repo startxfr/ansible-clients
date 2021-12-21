@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Configure collection
 namespace=startxfr
 collection=client
 version=0.0.1
@@ -23,3 +24,6 @@ else
 fi
 cd - || exit
 rm -rf ${test_dir}
+
+# Publish the client collection
+ansible-galaxy collection publish ${output_dir}/${namespace}-${collection}-${version}.tar.gz
