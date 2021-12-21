@@ -7,7 +7,7 @@ output_dir=.output
 test_dir=/tmp/test-client
 
 # Build the client collection
-ansible-galaxy collection build ${collection} --output-path ${output_dir}
+ansible-galaxy collection build --output-path ${output_dir}
 
 # Test the client collection
 mkdir -p ${test_dir}
@@ -21,4 +21,5 @@ if [[ "$?" == "0" ]]; then
 else
 	echo "========= TEST FAILED"
 fi
-cd -
+cd - || exit
+rm -rf ${test_dir}
