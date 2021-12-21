@@ -1,3 +1,7 @@
-# Ansible Collection - startxfr.client
+# STARTX client Ansible collection
 
-Documentation for the collection.
+This is the main documentation for the `startxfr.client` ansible collection. 
+
+## Roles
+
+- [ocp role](roles/ocp.md)
