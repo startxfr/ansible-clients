@@ -99,7 +99,12 @@ function ExecCollectionTest {
     export ANSIBLE_CONFIG=$(pwd)/ansible.cfg
 }
 
-# Test the client collection
+# Publish the client collection
+function ExecCollectionPrePublish {
+    addGalaxyServerToConfig ansible.cfg "${ANSIBLE_GALAXY_TOKEN:-xxxxxxxx}" release_galaxy "https://galaxy.ansible.com"
+}
+
+# Publish the client collection
 function ExecCollectionPublish {
     local namespace collection version
     namespace=$(galaxyGetCollectionNamespace)
@@ -108,4 +113,21 @@ function ExecCollectionPublish {
     echo "======== PUBLISH THE " "${namespace}"-"${collection}"-"${version}" "COLLECTION"
     # Publish the client collection
     ansible-galaxy collection publish ${output_dir}/"${namespace}"-"${collection}"-"${version}".tar.gz
+}
+
+# Add galaxy section to the ansible config file
+function addGalaxyServerToConfig {
+    local name url token
+    file=${1:-ansible.cfg}
+    name=${3:-release_galaxy}
+    token=${2:-xxxxxxxxxxxxxxx}
+    url=${4:-"https://galaxy.ansible.com"}
+    echo "======== ADD GALAXY REPOSITORY " "${name}" " into the " "${file}" " file"
+    echo "" >> "${file}"
+    echo "[galaxy]" >> "${file}"
+    echo "server_list = " "${name}" >> "${file}"
+    echo "" >> "${file}"
+    echo "[galaxy_server.${name}]" >> "${file}"
+    echo "url = " "${url}" >> "${file}"
+    echo "token = " "${token}" >> "${file}"
 }

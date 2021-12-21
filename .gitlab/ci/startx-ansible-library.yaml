@@ -27,6 +27,6 @@ image: "quay.io/startx/runner-bash:alpine3"
 # Library used to publish to galaxy namespace
 .collection-publish:
   before_script: 
-    - "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild"
+    - "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild && ExecCollectionPrePublish"
   script:
     - ExecCollectionPublish
