@@ -5,10 +5,10 @@
 # 
 
 # shellcheck source=/dev/null
-source .gitlab/cli/startx-library.sh
-pwd
+source "$(pwd)"/.gitlab/cli/startx-library.sh
+
 # local variables
-source_dir=.
+source_dir=$(pwd)
 output_dir=.output
 test_dir=/tmp/test-ansible-collection
 
