@@ -2,28 +2,28 @@
 ## STAGES
 ##
 
-# Return debug informations on master branch
+# Return debug informations
 debug:
   stage: "check"
   script: "source .gitlab/ci/startx-library.sh && DisplayCheckDebug"
   only:
-    - main
+    - devel
 
-# Return informations details on master branch
+# Return informations details
 info:
   stage: "check"
   script: "source .gitlab/ci/startx-library.sh && DisplayCheckInfo"
   only:
-    - main
+    - devel
 
-# Requirements check on master branch
+# Requirements check
 requirements:
   stage: "check"
   script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckRequirementsAnsible"
   only:
-    - main
+    - devel
 
-# Markdown check on master branch
+# Markdown check
 markdown:
   stage: "check"
   script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckMarkdownAnsible"
@@ -33,18 +33,28 @@ markdown:
     - stable
     - 0.*
 
-# Readthedocs check on master branch
-readthedocs:
-  stage: "check"
-  script: "source .gitlab/ci/startx-library.sh && DisplayCheckReadthedocs"
-  only:
-    - main
-    - devel
-    - stable
-
-# Shell check on master branch
+# Shell check
 shell:
   stage: "check"
   script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckShellcheckAnsible"
   only:
     - main
+    - devel
+    - stable
+
+# Yaml lint check
+yaml:
+  stage: "check"
+  script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckYamlAnsible"
+  only:
+    - main
+    - devel
+    - stable
+
+# Readthedocs check
+readthedocs:
+  stage: "check"
+  script: "source .gitlab/ci/startx-library.sh && DisplayCheckReadthedocs"
+  only:
+    - main
+    - stable

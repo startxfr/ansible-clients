@@ -54,6 +54,11 @@ function DisplayCheckShellcheckAnsible {
     shellcheck .gitlab/ci/startx-library.sh
 }
 
+# Display the yaml checks
+function DisplayCheckYamlAnsible {
+    echo "======== CHECK YAML SYNTAX"
+    ansible-lint ${source_dir}"/tests/test.yml
+}
 
 # read galaxy collection namespace
 function galaxyGetCollectionNamespace {
