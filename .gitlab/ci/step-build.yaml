@@ -7,6 +7,5 @@ build-collection:
   stage: "build"
   extends: .collection-build
   only:
-    - main
-    - devel
     - stable
+    - 0.*

@@ -22,6 +22,7 @@ include:
   - local: .gitlab/ci/step-test.yaml
   - local: .gitlab/ci/step-build.yaml
   - local: .gitlab/ci/step-publish.yaml
+  - local: .gitlab/ci/step-merge.yaml
 
 # Stagging for this pipeline
 stages:
@@ -29,3 +30,4 @@ stages:
   - "test"
   - "build"
   - "publish"
+  - "merge"

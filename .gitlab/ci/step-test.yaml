@@ -32,7 +32,7 @@ dast:
     DAST_WEBSITE: "https://startx-ansible-client.readthedocs.io/en/latest"
 
 # Build the fedora image
-build-collection:
+test-collection:
   stage: "test"
   extends: .collection-test
   only:
