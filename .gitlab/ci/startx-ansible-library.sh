@@ -5,7 +5,7 @@
 # 
 
 # shellcheck source=/dev/null
-source "$(pwd)"/.gitlab/cli/startx-library.sh
+source "$(pwd)"/.gitlab/ci/startx-library.sh
 
 # local variables
 source_dir=$(pwd)
