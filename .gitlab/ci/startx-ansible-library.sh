@@ -33,6 +33,7 @@ function DisplayCheckRequirementsAnsible {
 # read galaxy manifest
 function galaxyManifestGetKey {
     if [[ "" != "$1" && -r ${source_dir}/galaxy.yml ]]; then
+        # shellcheck disable=SC2046,SC2005,SC2086
         echo $(cat ${source_dir}/galaxy.yml | yq $1 - | tr -d \")
     else
         echo ""
@@ -105,6 +106,7 @@ function ExecCollectionTest {
     fi
     cd - || exit
     rm -rf ${test_dir}
+    # shellcheck disable=SC2155
     export ANSIBLE_CONFIG=$(pwd)/ansible.cfg
 }
 
@@ -132,6 +134,7 @@ function addGalaxyServerToConfig {
     token=${2:-xxxxxxxxxxxxxxx}
     url=${4:-"https://galaxy.ansible.com"}
     echo "======== ADD GALAXY REPOSITORY " "${name}" " into the " "${file}" " file"
+    # shellcheck disable=SC2129
     echo "" >> "${file}"
     echo "[galaxy]" >> "${file}"
     echo "server_list = " "${name}" >> "${file}"
