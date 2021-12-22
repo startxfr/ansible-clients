@@ -25,8 +25,6 @@
           ansible.builtin.copy:
             src: "{{ sc_ocp_download_tmpdir }}/oc"
             dest: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
-            owner: root
-            group: root
             mode: u=rwx,g=rx,o=rx
           become: sc_ocp_become
         - name: "create : client : Re-initialize the oc context"
@@ -40,8 +38,6 @@
           ansible.builtin.copy:
             src: "{{ sc_ocp_download_tmpdir }}/kubectl"
             dest: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
-            owner: root
-            group: root
             mode: u=rwx,g=rx,o=rx
           become: sc_ocp_become
         - name: "create : client : Re-initialize the kubectl context"
@@ -53,8 +49,6 @@
       ansible.builtin.file:
         src: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
         dest: "{{ sc_ocp_bin_directory }}/oc"
-        owner: root
-        group: root
         state: link
       become: sc_ocp_become
       when: sc_ocp_enable_symlink
@@ -64,8 +58,6 @@
       ansible.builtin.file:
         src: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
         dest: "{{ sc_ocp_bin_directory }}/kubectl"
-        owner: root
-        group: root
         state: link
       become: sc_ocp_become
       when: sc_ocp_enable_symlink
