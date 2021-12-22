@@ -14,6 +14,7 @@
       vars: &default
         sc_ocp_action: 'create'
         sc_ocp_enable_symlink: true
+        sc_ocp_become: false
         sc_ocp_bin_directory: "/tmp"
       tags:
         - create

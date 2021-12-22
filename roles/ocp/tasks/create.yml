@@ -28,7 +28,7 @@
             owner: root
             group: root
             mode: u=rwx,g=rx,o=rx
-          become: true
+          become: sc_ocp_become
         - name: "create : client : Re-initialize the oc context"
           include_tasks: "../init.yml"
       when: not ocp_details_oc.stat.exists
@@ -43,7 +43,7 @@
             owner: root
             group: root
             mode: u=rwx,g=rx,o=rx
-          become: true
+          become: sc_ocp_become
         - name: "create : client : Re-initialize the kubectl context"
           include_tasks: "../init.yml"
       when: not ocp_details_kubectl.stat.exists
@@ -56,7 +56,7 @@
         owner: root
         group: root
         state: link
-      become: true
+      become: sc_ocp_become
       when: sc_ocp_enable_symlink
       tags:
         - oc
@@ -67,7 +67,7 @@
         owner: root
         group: root
         state: link
-      become: true
+      become: sc_ocp_become
       when: sc_ocp_enable_symlink
       tags:
         - kubectl
