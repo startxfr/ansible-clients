@@ -57,7 +57,7 @@ function DisplayCheckShellcheckAnsible {
 # Display the yaml checks
 function DisplayCheckYamlAnsible {
     echo "======== CHECK YAML SYNTAX"
-    ansible-lint ${source_dir}"/tests/test.yml
+    ansible-lint "${source_dir}"/tests/test.yml
 }
 
 # read galaxy collection namespace
