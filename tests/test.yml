@@ -9,15 +9,35 @@
   become: false
   gather_facts: false
   roles:
-    - name: Execute the ocp role with create option
+    - name: Execute the ocp role to install default client
+      role: startxfr.client.ocp
+      vars: &default
+        sc_ocp_action: 'create'
+        sc_ocp_enable_symlink: true
+        sc_ocp_bin_directory: "/tmp"
+      tags:
+        - create
+    - name: Execute the ocp role to install kubectl in version 4.9.8
       role: startxfr.client.ocp
       vars:
-        sc_ocp_action: "create"
-      tags: 
+        <<: *default
+        sc_ocp_release: "4.9.6"
+        sc_ocp_binaries: [ "kubectl" ]
+      tags:
         - create
-    # - name: Execute the ocp role with delete option
-    #   role: startxfr.client.ocp
-    #   vars:
-    #     sc_ocp_action: "delete"
-    #   tags: 
-    #     - delete
+    - name: Execute the ocp role to install oc in version 4.9.8
+      role: startxfr.client.ocp
+      vars:
+        <<: *default
+        sc_ocp_release: "4.9.6"
+        sc_ocp_binaries: [ "oc" ]
+      tags:
+        - create
+    - name: Execute the ocp role to uninstall default client
+      role: startxfr.client.ocp
+      vars:
+        <<: *default
+        sc_ocp_action: 'delete'
+      tags:
+        - delete
+
