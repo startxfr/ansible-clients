@@ -33,7 +33,7 @@ function DisplayCheckRequirementsAnsible {
 # read galaxy manifest
 function galaxyManifestGetKey {
     if [[ "" != "$1" && -r ${source_dir}/galaxy.yml ]]; then
-        # shellcheck disable=SC2046,SC2005,SC2086
+        # shellcheck disable=SC2002,SC2046,SC2005,SC2086,SC2181
         echo $(cat ${source_dir}/galaxy.yml | yq $1 - | tr -d \")
     else
         echo ""
