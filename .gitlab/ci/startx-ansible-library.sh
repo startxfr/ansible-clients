@@ -99,6 +99,7 @@ function ExecCollectionTest {
     cd ${test_dir} || exit
     export ANSIBLE_CONFIG=${test_dir}/ansible.cfg
     ansible-playbook test.yml
+    # shellcheck disable=SC2181
     if [[ "$?" == "0" ]]; then
         echo "========= TEST SUCCEED"
     else
