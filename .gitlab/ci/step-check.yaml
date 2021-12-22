@@ -43,14 +43,14 @@ shell:
     - stable
 
 # Yaml lint check
-yaml:
-  stage: "check"
-  script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckYamlAnsible"
-  image: "quay.io/startx/runner-ansible:latest"
-  only:
-    - main
-    - devel
-    - stable
+# yaml:
+#   stage: "check"
+#   script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckYamlAnsible"
+#   image: "quay.io/startx/runner-ansible:latest"
+#   only:
+#     - main
+#     - devel
+#     - stable
 
 # Readthedocs check
 readthedocs:
