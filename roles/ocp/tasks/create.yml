@@ -29,7 +29,7 @@
           become: sc_ocp_become
         - name: "create : client : Re-initialize the oc context"
           include_tasks: "../init.yml"
-      when: not ocp_details_oc.stat.exists
+      when: not ocp_details_oc.stat.exists and "oc" in sc_ocp_binaries
       tags:
         - oc
     - name: "create : Create binary kubectl"
@@ -42,7 +42,7 @@
           become: sc_ocp_become
         - name: "create : client : Re-initialize the kubectl context"
           include_tasks: "../init.yml"
-      when: not ocp_details_kubectl.stat.exists
+      when: not ocp_details_kubectl.stat.exists and "kubectl" in sc_ocp_binaries
       tags:
         - kubectl
     - name: "create : Symbolic link {{ sc_ocp_bin_directory }}/oc to {{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
@@ -51,7 +51,7 @@
         dest: "{{ sc_ocp_bin_directory }}/oc"
         state: link
       become: sc_ocp_become
-      when: sc_ocp_enable_symlink
+      when: sc_ocp_enable_symlink and "oc" in sc_ocp_binaries
       tags:
         - oc
     - name: "create : Symbolic link {{ sc_ocp_bin_directory }}/kubectl to {{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
@@ -60,7 +60,7 @@
         dest: "{{ sc_ocp_bin_directory }}/kubectl"
         state: link
       become: sc_ocp_become
-      when: sc_ocp_enable_symlink
+      when: sc_ocp_enable_symlink and "kubectl" in sc_ocp_binaries
       tags:
         - kubectl
   when: |-
