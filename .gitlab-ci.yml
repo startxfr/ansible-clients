@@ -12,7 +12,7 @@ variables:
   SX_DEBUG: "true"
 
 # Default container image
-image: "quay.io/startx/runner-ansible:alpine3"
+image: "quay.io/startx/runner-ansible:latest"
 
 # Include library
 include:

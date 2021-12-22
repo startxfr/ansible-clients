@@ -8,7 +8,7 @@
 source "$(pwd)"/.gitlab/ci/startx-library.sh
 
 # local variables
-source_dir=$(pwd)
+source_dir=.
 output_dir=.output
 test_dir=/tmp/test-ansible-collection
 
