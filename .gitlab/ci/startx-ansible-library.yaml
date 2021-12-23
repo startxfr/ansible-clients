@@ -6,27 +6,17 @@
 # Default container image
 image: "quay.io/startx/runner-bash:alpine3"
 
-##
-## LIBRARY
-##
-
 # Library used to build the collection
 .collection-build:
-  before_script: 
-    - "source .gitlab/ci/startx-ansible-library.sh"
   script:
-    - ExecCollectionBuild
+    - "make build-gitlab"
 
 # Library used to test collection content
 .collection-test:
-  before_script: 
-    - "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild"
   script:
-    - ExecCollectionTest
+    - "make test-gitlab"
 
 # Library used to publish to galaxy namespace
 .collection-publish:
-  before_script: 
-    - "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild && ExecCollectionPrePublish"
   script:
-    - ExecCollectionPublish
+    - "make publish-gitlab"
