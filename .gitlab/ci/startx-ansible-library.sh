@@ -128,6 +128,17 @@ function ExecCollectionPublish {
     ansible-galaxy collection publish ${output_dir}/"${namespace}"-"${collection}"-"${version}".tar.gz
 }
 
+# Clean the client collection temparary resources
+function ExecCollectionClean {
+    local namespace collection version
+    namespace=$(galaxyGetCollectionNamespace)
+    collection=$(galaxyGetCollectionName)
+    version=$(galaxyGetCollectionVersion)
+    echo "======== CLEAN THE " "${namespace}"-"${collection}"-"${version}" "COLLECTION"
+    rm -rf ${test_dir}
+    rm -rf "${output_dir}/${namespace}-${collection}-${version}*"
+}
+
 # Add galaxy section to the ansible config file
 function addGalaxyServerToConfig {
     local name url token
