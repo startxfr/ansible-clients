@@ -95,7 +95,7 @@ function ExecCollectionTest {
     version=$(galaxyGetCollectionVersion)
     echo "======== TEST THE " "${namespace}"-"${collection}"-"${version}" "COLLECTION"
     mkdir -p ${test_dir}
-    cp -r tests/* ${test_dir}/
+    cp -r tests/gitlab/* ${test_dir}/
     ansible-galaxy collection install ${output_dir}/"${namespace}"-"${collection}"-"${version}".tar.gz -p ${test_dir}/collections
     cd ${test_dir} || exit
     export ANSIBLE_CONFIG=${test_dir}/ansible.cfg
