@@ -1,0 +1,82 @@
+---
+- name: Local test of the startxfr client collection
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  # roles:
+  #   - name: Execute the ocp role to install default client
+  #     role: startxfr.client.ocp
+  #     vars: &default
+  #       sc_ocp_action: 'create'
+  #       sc_ocp_enable_symlink: true
+  #       sc_ocp_become: false
+  #       sc_ocp_bin_directory: "/tmp"
+  #     tags:
+  #       - create
+  #   - name: Execute the ocp role to install kubectl in version 4.9.8
+  #     role: startxfr.client.ocp
+  #     vars:
+  #       <<: *default
+  #       sc_ocp_release: "4.9.4"
+  #       sc_ocp_binaries: [ "kubectl" ]
+  #     tags:
+  #       - create
+  #   - name: Execute the ocp role to install oc in version 4.9.8
+  #     role: startxfr.client.ocp
+  #     vars:
+  #       <<: *default
+  #       sc_ocp_release: "4.9.4"
+  #       sc_ocp_binaries: [ "oc" ]
+  #     tags:
+  #       - create
+  #   - name: Execute the ocp role to uninstall default client
+  #     role: startxfr.client.ocp
+  #     vars:
+  #       <<: *default
+  #       sc_ocp_action: 'delete'
+  #     tags:
+  #       - delete
+  tasks: 
+    - name: Execute the ocp role to install default client
+      import_role: 
+        name: startxfr.client.ocp
+      vars: &default
+        sc_ocp_action: 'create'
+        sc_ocp_enable_symlink: true
+        sc_ocp_become: false
+        sc_ocp_bin_directory: "/tmp"
+      tags:
+        - create
+    - debug:
+        var: ocp_details_kubectl
+    - name: Execute the ocp role to install kubectl in version 4.9.8
+      import_role: 
+        name: startxfr.client.ocp
+      vars:
+        <<: *default
+        sc_ocp_release: "4.9.4"
+        sc_ocp_binaries: [ "kubectl" ]
+      tags:
+        - create
+    - debug:
+        var: ocp_details_kubectl
+    - name: Execute the ocp role to install oc in version 4.9.8
+      import_role: 
+        name: startxfr.client.ocp
+      vars:
+        <<: *default
+        sc_ocp_release: "4.9.4"
+        sc_ocp_binaries: [ "oc" ]
+      tags:
+        - create
+    - debug:
+        var: ocp_details_kubectl
+    - name: Execute the ocp role to uninstall default client
+      import_role: 
+        name: startxfr.client.ocp
+      vars:
+        <<: *default
+        sc_ocp_action: 'delete'
+      tags:
+        - delete

@@ -26,7 +26,8 @@ function DisplayCheckRequirementsAnsible {
     DoCheckCheckRequirementsDirectoryExist meta
     DoCheckCheckRequirementsFileExist meta/runtime.yml
     DoCheckCheckRequirementsFileExist plugins/README.md
-    DoCheckCheckRequirementsFileExist tests/test.yml
+    DoCheckCheckRequirementsDirectoryExist tests
+    DoCheckCheckRequirementsFileExist tests/gitlab/test.yml
 }
 
 
@@ -58,7 +59,7 @@ function DisplayCheckShellcheckAnsible {
 # Display the yaml checks
 function DisplayCheckYamlAnsible {
     echo "======== CHECK YAML SYNTAX"
-    ansible-lint "${source_dir}"/tests/test.yml
+    ansible-lint "${source_dir}"/tests/gitlab/test.yml
 }
 
 # read galaxy collection namespace
