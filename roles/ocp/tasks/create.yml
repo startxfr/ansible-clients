@@ -1,11 +1,13 @@
 ---
 - name: "create : Start creation if binary doesn't exist"
   block:
+
     - name: "create : Create the temporary directory"
       ansible.builtin.file:
         path: "{{ sc_ocp_download_tmpdir }}"
         state: directory
         recurse: yes
+
     - name: "create : Download clients from {{ sc_ocp_download_baseurl }}/{{ sc_ocp_release }}/openshift-client-linux-{{ sc_ocp_release }}.tar.gz"
       ansible.builtin.get_url:
         url: "{{ sc_ocp_download_baseurl }}/{{ sc_ocp_release }}/openshift-client-linux-{{ sc_ocp_release }}.tar.gz"
@@ -14,13 +16,16 @@
         force: true
         validate_certs: false
       notify: "remove temp"
+
     - name: "create : Unarchive content into {{ sc_ocp_download_tmpdir }}"
       ansible.builtin.unarchive:
         src: "{{ sc_ocp_download_tmpdir }}/openshift-client-linux-{{ sc_ocp_release }}.tar.gz"
         dest: "{{ sc_ocp_download_tmpdir }}"
       notify: "remove temp"
+
     - name: "create : Create binary oc"
       block:
+
         - name: "create : client : Create binary oc into {{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
           ansible.builtin.copy:
             src: "{{ sc_ocp_download_tmpdir }}/oc"
@@ -29,13 +34,18 @@
             group: root
             mode: u=rwx,g=rx,o=rx
           become: true
+
         - name: "create : client : Re-initialize the oc context"
           include_tasks: "../init.yml"
+
       when: not ocp_details_oc.stat.exists
       tags:
         - oc
+
+
     - name: "create : Create binary kubectl"
       block:
+
         - name: "create : client : Create binary kubectl into {{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
           ansible.builtin.copy:
             src: "{{ sc_ocp_download_tmpdir }}/kubectl"
@@ -44,11 +54,15 @@
             group: root
             mode: u=rwx,g=rx,o=rx
           become: true
+
         - name: "create : client : Re-initialize the kubectl context"
           include_tasks: "../init.yml"
+
       when: not ocp_details_kubectl.stat.exists
       tags:
         - kubectl
+
+
     - name: "create : Symbolic link {{ sc_ocp_bin_directory }}/oc to {{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
       ansible.builtin.file:
         src: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
@@ -59,6 +73,7 @@
       become: true
       tags:
         - oc
+
     - name: "create : Symbolic link {{ sc_ocp_bin_directory }}/kubectl to {{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
       ansible.builtin.file:
         src: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
@@ -69,6 +84,7 @@
       become: true
       tags:
         - kubectl
+
   when: |-
     not ocp_details_kubectl.stat.exists or 
     not ocp_details_oc.stat.exists
