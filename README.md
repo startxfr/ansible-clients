@@ -4,4 +4,4 @@ This is the main documentation for the `startxfr.client` ansible collection.
 
 ## Roles
 
-- [ocp role](roles/ocp.md)
+- [ocp role](roles/ocp/README.md)
