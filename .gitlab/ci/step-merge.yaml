@@ -1,0 +1,92 @@
+##
+## GIT MERGE
+##
+
+# Merge the main branch
+merge-main:
+  stage: "merge"
+  extends: .git-merge
+  variables:
+    SXGLCI_BRANCH_FROM: 'devel'
+    SXGLCI_BRANCH_TO: 'main'
+  only:
+    - devel
+
+# Merge the stable branch
+merge-stable:
+  stage: "merge"
+  extends: .git-merge
+  variables:
+    SXGLCI_BRANCH_FROM: 'main'
+    SXGLCI_BRANCH_TO: 'stable'
+  only:
+    - main
+
+# Merge the version tag
+merge-version:
+  stage: "merge"
+  extends: .git-merge
+  variables:
+    SXGLCI_BRANCH_FROM: 'stable' # default to stable branch
+  script: |
+    #!/bin/bash
+    echo "======== Checkout branch $SXGLCI_BRANCH_FROM"
+    if [[ $SX_DEBUG == true ]]; then
+      git checkout $SXGLCI_BRANCH_FROM
+    else
+      git checkout $SXGLCI_BRANCH_FROM &> /dev/null
+    fi
+    if [[ $? != 0 ]]; then
+      echo "!! Could not find origin branch $SXGLCI_BRANCH_FROM" && exit 1
+    fi
+    echo "======== Checking tags for repository ${CI_PROJECT_PATH}"
+    git tag | tail -n 1 > /tmp/last
+    if [[ $? != 0 ]]; then
+      echo "!! Could not last tag for this repository" && exit 1
+    fi
+    SXGLCI_LAST_TAG=`cat /tmp/last`
+    echo "== Found $SXGLCI_LAST_TAG as last tag"
+    source .gitlab/ci/startx-ansible-library.sh
+    local collversion=$(galaxyGetCollectionVersion)
+    eval x=$(git tag | tail -n 1 | grep $collversion)
+    if [[ $x != "" ]]; then
+      echo "!! Tag $collversion already exist" && exit 0
+    fi
+    echo "== Tag $collversion doesn't exist"
+    echo "======== Checkout to tag $SXGLCI_LAST_TAG"
+    if [[ $SX_DEBUG == true ]]; then
+      git checkout $SXGLCI_LAST_TAG
+      git pull origin $SXGLCI_LAST_TAG
+    else
+      git checkout $SXGLCI_LAST_TAG &> /dev/null
+      git pull origin $SXGLCI_LAST_TAG &> /dev/null
+    fi
+    echo "======== Merge branch $SXGLCI_BRANCH_FROM into $SXGLCI_LAST_TAG (release $collversion)"
+    if [[ $SX_DEBUG == true ]]; then
+      git merge --no-ff $SXGLCI_BRANCH_FROM
+    else
+      git merge --no-ff $SXGLCI_BRANCH_FROM &> /dev/null
+    fi
+    if [[ $? != 0 ]]; then
+      echo "!! Could not automaticaly merge branch $SXGLCI_BRANCH_FROM into $SXGLCI_LAST_TAG for release $collversion" && exit 1
+    fi
+    echo "======== Tag $collversion after merging $SXGLCI_BRANCH_FROM into $SXGLCI_LAST_TAG"
+    if [[ $SX_DEBUG == true ]]; then
+      git tag $collversion
+    else
+      git tag $collversion &> /dev/null
+    fi
+    if [[ $? != 0 ]]; then
+      echo "!! Could not create tag $collversion" && exit 1
+    fi
+    echo "======== Push tag $collversion"
+    if [[ $SX_DEBUG == true ]]; then
+      git push origin $collversion
+    else
+      git push origin $collversion &> /dev/null
+    fi
+    if [[ $? != 0 ]]; then
+      echo "!! Could not automaticaly push branch $collversion" && exit 1
+    fi
+  only:
+    - stable

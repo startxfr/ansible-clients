@@ -1,0 +1,11 @@
+##
+## STAGES
+##
+
+# Build the fedora image
+build-collection:
+  stage: "build"
+  extends: .collection-build
+  only:
+    - stable
+    - 0.*

@@ -1,13 +1,13 @@
 ### REQUIRED
 namespace: startxfr
 name: client
-version: 0.0.2
+version: 0.0.4
 readme: README.md
 license:
 - GPL-2.0-or-later
 # license_file: 'LICENSE.md'
 description: >-
-  Collection of ansible roles used to install command line client used to inteeract with API based IaaS services
+  Collection of ansible roles used to install command line client used to interact with API based IaaS services
   such as kubernetes, helm, istio, openshift, git or aws.
 authors:
 - Christophe LARUE <clarue@startx.fr>
@@ -22,8 +22,8 @@ dependencies: {}
 #     "other_namespace.collection2": ">=2.0.0,<3.0.0"
 #     "anderson55.my_collection": "*" 
 repository: https://gitlab.com/startx1/ansible/client
-documentation: https://gitlab.com/startx1/ansible/client
-homepage: https://gitlab.com/startx1/ansible/client
+documentation: https://startx-ansible-client.readthedocs.io
+homepage: https://startx-ansible-client.readthedocs.io/
 issues: https://gitlab.com/startx1/ansible/client/-/issues/new
-build_ignore:
-- '*.tar.gz'
+# build_ignore:
+#   - '*.tar.gz'

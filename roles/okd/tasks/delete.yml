@@ -1,0 +1,37 @@
+---
+- name: "delete : Delete symbolic link {{ sc_okd_bin_directory }}/oc"
+  ansible.builtin.file:
+    path: "{{ sc_okd_bin_directory }}/oc"
+    state: absent
+  become: sc_okd_become
+  tags:
+    - delete
+    - clients
+    - oc
+- name: "delete : Delete binary {{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+  ansible.builtin.file:
+    path: "{{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+    state: absent
+  become: sc_okd_become
+  tags:
+    - delete
+    - clients
+    - oc
+- name: "delete : Delete symbolic link {{ sc_okd_bin_directory }}/kubectl"
+  ansible.builtin.file:
+    path: "{{ sc_okd_bin_directory }}/kubectl"
+    state: absent
+  become: sc_okd_become
+  tags:
+    - delete
+    - clients
+    - kubectl
+- name: "delete : Delete binary {{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+  ansible.builtin.file:
+    path: "{{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+    state: absent
+  become: sc_okd_become
+  tags:
+    - delete
+    - clients
+    - kubectl

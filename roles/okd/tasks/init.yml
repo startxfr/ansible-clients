@@ -1,0 +1,15 @@
+---
+- name: "init : Check if {{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }} exist"
+  ansible.builtin.stat:
+    path: "{{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+  register: okd_details_kubectl
+  tags:
+    - init
+    - kubectl
+- name: "init : Check if {{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }} exist"
+  ansible.builtin.stat:
+    path: "{{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+  register: okd_details_oc
+  tags:
+    - init
+    - oc
