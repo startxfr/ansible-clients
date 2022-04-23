@@ -42,7 +42,7 @@ merge-version:
     echo "======== Checking tags for repository ${CI_PROJECT_PATH}"
     git tag | tail -n 1 > /tmp/last
     if [[ $? != 0 ]]; then
-      echo "!! Could not last tag for this repository" && exit 1
+      echo "!! Could not find last tag for this repository" && exit 1
     fi
     SXGLCI_LAST_TAG=`cat /tmp/last`
     echo "== Found $SXGLCI_LAST_TAG as last tag"
