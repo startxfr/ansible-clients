@@ -24,7 +24,7 @@
         src: "{{ sc_ocp_download_tmpdir }}/oc"
         dest: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
         mode: u=rwx,g=rx,o=rx
-      become: sc_ocp_become
+      become: sc_ocp_become | default(true)
       when: not ocp_details_oc.stat.exists and "oc" in sc_ocp_binaries
       tags:
         - oc
@@ -33,7 +33,7 @@
         src: "{{ sc_ocp_download_tmpdir }}/kubectl"
         dest: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
         mode: u=rwx,g=rx,o=rx
-      become: sc_ocp_become
+      become: sc_ocp_become | default(true)
       when: not ocp_details_kubectl.stat.exists and "kubectl" in sc_ocp_binaries
       tags:
         - kubectl
@@ -42,7 +42,7 @@
         src: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
         dest: "{{ sc_ocp_bin_directory }}/oc"
         state: link
-      become: sc_ocp_become
+      become: sc_ocp_become | default(true)
       when: sc_ocp_enable_symlink and "oc" in sc_ocp_binaries
       tags:
         - oc
@@ -51,7 +51,7 @@
         src: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
         dest: "{{ sc_ocp_bin_directory }}/kubectl"
         state: link
-      become: sc_ocp_become
+      become: sc_ocp_become | default(true)
       when: sc_ocp_enable_symlink and "kubectl" in sc_ocp_binaries
       tags:
         - kubectl
