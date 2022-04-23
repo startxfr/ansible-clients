@@ -4,13 +4,13 @@
   tags:
     - always
     - init
-- name: Create okd context
+- name: Create helm context
   import_tasks: "create.yml"
-  when: sc_okd_action == "create"
+  when: sc_helm_action == "create"
   tags:
     - create
-- name: Delete okd context
+- name: Delete helm context
   import_tasks: "delete.yml"
-  when: sc_okd_action == "delete"
+  when: sc_helm_action == "delete"
   tags:
     - delete

@@ -5,7 +5,6 @@ version: "0.0.6"
 readme: README.md
 license:
 - GPL-2.0-or-later
-# license_file: 'LICENSE.md'
 description: >-
   Collection of ansible roles used to install command line client used to interact with API based IaaS services
   such as kubernetes, helm, istio, openshift, git or aws.
@@ -17,10 +16,6 @@ tags:
 - client
 - api
 dependencies: {}
-# dependencies:
-#     "other_namespace.collection1": ">=1.0.0"
-#     "other_namespace.collection2": ">=2.0.0,<3.0.0"
-#     "anderson55.my_collection": "*" 
 repository: https://gitlab.com/startx1/ansible/client
 documentation: https://startx-ansible-client.readthedocs.io
 homepage: https://startx-ansible-client.readthedocs.io/
