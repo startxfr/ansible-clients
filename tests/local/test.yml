@@ -7,31 +7,103 @@
   roles:
     - name: Execute the ocp role to install default client
       role: startxfr.client.ocp
-      vars: 
-        sc_ocp_action: 'create'
-        sc_ocp_enable_symlink: true
-        sc_ocp_become: false
-        sc_ocp_bin_directory: "/tmp"
       tags:
         - create
     - name: Execute the ocp role to install kubectl in version 4.9.8
       role: startxfr.client.ocp
       vars:
-        sc_ocp_release: "4.9.4"
+        sc_ocp_release: "4.9.8"
         sc_ocp_binaries: [ "kubectl" ]
       tags:
         - create
     - name: Execute the ocp role to install oc in version 4.9.8
       role: startxfr.client.ocp
       vars:
-        sc_ocp_release: "4.9.4"
+        sc_ocp_release: "4.9.8"
         sc_ocp_binaries: [ "oc" ]
+      tags:
+        - create
+    - name: Execute the ocp role to install personalised client
+      role: startxfr.client.ocp
+      vars: 
+        sc_ocp_action: 'create'
+        sc_ocp_enable_symlink: false
+        sc_ocp_become: false
+        sc_ocp_bin_directory: "/tmp/test-ansible-startx"
       tags:
         - create
     - name: Execute the ocp role to uninstall default client
       role: startxfr.client.ocp
       vars:
         sc_ocp_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the ocp role to uninstall 4.9.8 client
+      role: startxfr.client.ocp
+      vars:
+        sc_ocp_release: "4.9.8"
+        sc_ocp_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the okd role to install default client
+      role: startxfr.client.okd
+      tags:
+        - create
+    - name: Execute the okd role to install kubectl in version 4.10.0
+      role: startxfr.client.okd
+      vars:
+        sc_okd_action: 'create'
+        sc_okd_release: "4.10.0"
+        sc_okd_release_minor: "0.okd-2022-03-07-131213"
+        sc_okd_binaries: [ "kubectl" ]
+      tags:
+        - create
+    - name: Execute the okd role to install oc in version 4.9.0
+      role: startxfr.client.okd
+      vars:
+        sc_okd_action: 'create'
+        sc_okd_release: "4.9.0"
+        sc_okd_release_minor: "0.okd-2022-02-12-140851"
+        sc_okd_binaries: [ "oc" ]
+      tags:
+        - create
+    - name: Execute the okd role to uninstall default client
+      role: startxfr.client.okd
+      vars:
+        sc_okd_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the okd role to uninstall 4.10.0 client
+      role: startxfr.client.okd
+      vars:
+        sc_okd_action: 'delete'
+        sc_okd_release: "4.10.0"
+        sc_okd_release_minor: "0.okd-2022-03-07-131213"
+        sc_okd_binaries: [ "kubectl" ]
+      tags:
+        - delete
+    - name: Execute the helm role to install default client
+      role: startxfr.client.helm
+      tags:
+        - create
+    - name: Execute the helm role to install 3.8.0 client
+      role: startxfr.client.helm
+      vars:
+        sc_helm_release: "3.8.0"
+      tags:
+        - create
+    - name: Execute the helm role to explicitly install 3.7.2 client
+      role: startxfr.client.helm
+      vars:
+        sc_helm_action: 'create'
+        sc_helm_release: "3.7.2"
+      tags:
+        - create
+    - name: Execute the helm role to uninstall 3.8.2 client
+      role: startxfr.client.helm
+      vars:
+        sc_helm_action: 'delete'
+        sc_helm_release: "3.8.2"
       tags:
         - delete
   tasks: 
@@ -40,36 +112,11 @@
         name: startxfr.client.ocp
       vars: 
         sc_ocp_action: 'create'
-        sc_ocp_enable_symlink: true
-        sc_ocp_become: false
-        sc_ocp_bin_directory: "/tmp"
       tags:
         - create
       register: ocp_test_default
     - debug:
         var: ocp_test_default
-    - name: Execute the ocp role to install kubectl in version 4.9.8
-      import_role: 
-        name: startxfr.client.ocp
-      vars:
-        sc_ocp_release: "4.9.4"
-        sc_ocp_binaries: [ "kubectl" ]
-      tags:
-        - create
-      register: ocp_test_494k
-    - debug:
-        var: ocp_test_494k
-    - name: Execute the ocp role to install oc in version 4.9.8
-      import_role: 
-        name: startxfr.client.ocp
-      vars:
-        sc_ocp_release: "4.9.4"
-        sc_ocp_binaries: [ "oc" ]
-      tags:
-        - create
-      register: ocp_test_494o
-    - debug:
-        var: ocp_test_494o
     - name: Execute the ocp role to uninstall default client
       import_role: 
         name: startxfr.client.ocp
@@ -77,6 +124,46 @@
         sc_ocp_action: 'delete'
       tags:
         - delete
-      register: ocp_test_defaultd
+      register: ocp_test_default
     - debug:
-        var: ocp_test_defaultd
+        var: ocp_test_default
+    - name: Execute the okd role to install default client
+      import_role: 
+        name: startxfr.client.okd
+      vars: 
+        sc_okd_action: 'create'
+      tags:
+        - create
+      register: okd_test_default
+    - debug:
+        var: okd_test_default
+    - name: Execute the okd role to uninstall default client
+      import_role: 
+        name: startxfr.client.okd
+      vars:
+        sc_okd_action: 'delete'
+      tags:
+        - delete
+      register: okd_test_default
+    - debug:
+        var: okd_test_default
+    - name: Execute the helm role to install default client
+      import_role: 
+        name: startxfr.client.helm
+      vars: 
+        sc_helm_action: 'create'
+      tags:
+        - create
+      register: helm_test_default
+    - debug:
+        var: helm_test_default
+    - name: Execute the helm role to uninstall default client
+      import_role: 
+        name: startxfr.client.helm
+      vars:
+        sc_helm_action: 'delete'
+      tags:
+        - delete
+      register: helm_test_default
+    - debug:
+        var: helm_test_default
