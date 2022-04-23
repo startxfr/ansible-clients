@@ -3,7 +3,8 @@
   ansible.builtin.file:
     path: "{{ sc_okd_bin_directory }}/oc"
     state: absent
-  become: sc_okd_become
+  become: sc_okd_become | default(true)
+  ignore_errors: yes
   tags:
     - delete
     - clients
@@ -12,7 +13,8 @@
   ansible.builtin.file:
     path: "{{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
     state: absent
-  become: sc_okd_become
+  become: sc_okd_become | default(true)
+  ignore_errors: yes
   tags:
     - delete
     - clients
@@ -21,7 +23,8 @@
   ansible.builtin.file:
     path: "{{ sc_okd_bin_directory }}/kubectl"
     state: absent
-  become: sc_okd_become
+  become: sc_okd_become | default(true)
+  ignore_errors: yes
   tags:
     - delete
     - clients
@@ -30,7 +33,8 @@
   ansible.builtin.file:
     path: "{{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
     state: absent
-  become: sc_okd_become
+  become: sc_okd_become | default(true)
+  ignore_errors: yes
   tags:
     - delete
     - clients
