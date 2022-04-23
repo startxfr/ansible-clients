@@ -1,0 +1,16 @@
+---
+- name: Initialize ansible context
+  import_tasks: "init.yml"
+  tags:
+    - always
+    - init
+- name: Create helm context
+  import_tasks: "create.yml"
+  when: sc_helm_action == "create"
+  tags:
+    - create
+- name: Delete helm context
+  import_tasks: "delete.yml"
+  when: sc_helm_action == "delete"
+  tags:
+    - delete
