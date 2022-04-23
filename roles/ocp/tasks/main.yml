@@ -4,12 +4,12 @@
   tags:
     - always
     - init
-- name: Create openshift-installer context
+- name: Create openshift context
   import_tasks: "create.yml"
   when: sc_ocp_action == "create"
   tags:
     - create
-- name: Delete openshift-installer context
+- name: Delete openshift context
   import_tasks: "delete.yml"
   when: sc_ocp_action == "delete"
   tags:

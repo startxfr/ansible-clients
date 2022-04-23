@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ../helm
+      vars:
+        sc_helm_action: 'create'
+        sc_helm_release: "3.8.2"
+      tags:
+        - create
+    - role: ../helm
+      vars:
+        sc_helm_action: 'create'
+        sc_helm_release: "3.8.0"
+      tags:
+        - create
+    - role: ../helm
+      vars:
+        sc_helm_action: 'create'
+        sc_helm_release: "3.7.2"
+      tags:
+        - create
+    - role: ../helm
+      vars:
+        sc_helm_action: 'delete'
+        sc_helm_release: "3.8.2"
+      tags:
+        - delete
