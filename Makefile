@@ -1,48 +1,57 @@
-version= 0.0.3
+
+
+version= 0.0.4
 collection=client
+
 # Generic actions (default is local)
 # all action
+.PHONY: all
 all: build test clean
 # build action
+.PHONY: build
 build: build-local
 # test action
+.PHONY: test
 test: test-local
 # clean action
+.PHONY: clean
 clean: clean-local
 # mrproper action
-mrproper: clean-local
+mrproper: clean-local 
 
 # Local actions
 # all local actions
 all-local: build-local test-local clean-local
 # build local action
+# build-local: SHELL:=/bin/bash
 build-local: 
-    source .gitlab/ci/startx-ansible-library.sh
-	ExecCollectionBuild
+	@echo "======== BUILD LOCAL"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild local"
 # test local action
-    source .gitlab/ci/startx-ansible-library.sh
-	ExecCollectionTest
+test-local: 
+	@echo "======== TEST LOCAL"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionTest local"
 # clean local action
 clean-local: 
-    source .gitlab/ci/startx-ansible-library.sh
-	ExecCollectionClean
+	@echo "======== CLEAN LOCAL"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionClean local"
 
 # Gitlab actions
 # all gitlab actions
 all-gitlab: build-gitlab test-gitlab publish-gitlab
 # build local action
 build-gitlab: 
-    source .gitlab/ci/startx-ansible-library.sh
-	ExecCollectionBuild
+	@echo "======== BUILD GITLAB"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild gitlab"
 # test local action
 test-gitlab: 
-    source .gitlab/ci/startx-ansible-library.sh
-	ExecCollectionTest
+	@echo "======== TEST GITLAB"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionTest gitlab"
 # clean local action
 publish-gitlab: 
-    source .gitlab/ci/startx-ansible-library.sh
-	ExecCollectionPublish
+	@echo "======== PUBLISH GITLAB"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionPublish gitlab"
 # clean local action
 clean-gitlab: 
-    source .gitlab/ci/startx-ansible-library.sh
-	ExecCollectionClean
+	@echo "======== CLEAN GITLAB"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionClean gitlab"

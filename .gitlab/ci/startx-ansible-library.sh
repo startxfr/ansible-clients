@@ -58,8 +58,10 @@ function DisplayCheckShellcheckAnsible {
 
 # Display the yaml checks
 function DisplayCheckYamlAnsible {
+    local context
+    context=${1:-local}
     echo "======== CHECK YAML SYNTAX"
-    ansible-lint "${source_dir}"/tests/gitlab/test.yml
+    ansible-lint "${source_dir}"/tests/"${context}"/test.yml
 }
 
 # read galaxy collection namespace
@@ -79,23 +81,25 @@ function galaxyGetCollectionVersion {
 
 # Build the client collection
 function ExecCollectionBuild {
-    local namespace collection version
+    local context namespace collection version
+    context=${1:-local}
     namespace=$(galaxyGetCollectionNamespace)
     collection=$(galaxyGetCollectionName)
     version=$(galaxyGetCollectionVersion)
-    echo "======== BUILD THE " "${namespace}"-"${collection}"-"${version}" "COLLECTION"
-    ansible-galaxy collection build --output-path ${output_dir}
+    echo "======== BUILD THE ${namespace}-${collection}-${version} COLLECTION in ${context} context"
+    ansible-galaxy collection build --force --output-path ${output_dir}
 }
 
 # Test the client collection
 function ExecCollectionTest {
-    local namespace collection version
+    local context namespace collection version
+    context=${1:-local}
     namespace=$(galaxyGetCollectionNamespace)
     collection=$(galaxyGetCollectionName)
     version=$(galaxyGetCollectionVersion)
-    echo "======== TEST THE " "${namespace}"-"${collection}"-"${version}" "COLLECTION"
+    echo "======== TEST THE ${namespace}-${collection}-${version} COLLECTION in ${context} context"
     mkdir -p ${test_dir}
-    cp -r tests/gitlab/* ${test_dir}/
+    cp -r tests/"${context}"/* ${test_dir}/
     ansible-galaxy collection install ${output_dir}/"${namespace}"-"${collection}"-"${version}".tar.gz -p ${test_dir}/collections
     cd ${test_dir} || exit
     export ANSIBLE_CONFIG=${test_dir}/ansible.cfg
@@ -114,29 +118,31 @@ function ExecCollectionTest {
 
 # Publish the client collection
 function ExecCollectionPrePublish {
-    addGalaxyServerToConfig ansible.cfg "${ANSIBLE_GALAXY_TOKEN:-xxxxxxxx}" release_galaxy "https://galaxy.ansible.com"
+    addGalaxyServerToConfig ansible.cfg "${ANSIBLE_GALAXY_TOKEN:-xxxxxxxx} release_galaxy https://galaxy.ansible.com"
 }
 
 # Publish the client collection
 function ExecCollectionPublish {
-    local namespace collection version
+    local context namespace collection version
+    context=${1:-local}
     namespace=$(galaxyGetCollectionNamespace)
     collection=$(galaxyGetCollectionName)
     version=$(galaxyGetCollectionVersion)
-    echo "======== PUBLISH THE " "${namespace}"-"${collection}"-"${version}" "COLLECTION"
+    echo "======== PUBLISH THE ${namespace}-${collection}-${version} COLLECTION in ${context} context"
     # Publish the client collection
-    ansible-galaxy collection publish ${output_dir}/"${namespace}"-"${collection}"-"${version}".tar.gz
+    ansible-galaxy collection publish "${output_dir}/${namespace}-${collection}-${version}.tar.gz"
 }
 
 # Clean the client collection temparary resources
 function ExecCollectionClean {
-    local namespace collection version
+    local context namespace collection version
+    context=${1:-local}
     namespace=$(galaxyGetCollectionNamespace)
     collection=$(galaxyGetCollectionName)
     version=$(galaxyGetCollectionVersion)
-    echo "======== CLEAN THE " "${namespace}"-"${collection}"-"${version}" "COLLECTION"
+    echo "======== CLEAN THE ${namespace}-${collection}-${version} COLLECTION in ${context} context"
     rm -rf ${test_dir}
-    rm -rf "${output_dir}/${namespace}-${collection}-${version}*"
+    rm -rf "${output_dir}/${namespace}-${collection}-*"
 }
 
 # Add galaxy section to the ansible config file
@@ -146,7 +152,7 @@ function addGalaxyServerToConfig {
     name=${3:-release_galaxy}
     token=${2:-xxxxxxxxxxxxxxx}
     url=${4:-"https://galaxy.ansible.com"}
-    echo "======== ADD GALAXY REPOSITORY " "${name}" " into the " "${file}" " file"
+    echo "======== ADD GALAXY REPOSITORY ${name} into the ${file} file"
     # shellcheck disable=SC2129
     echo "" >> "${file}"
     echo "[galaxy]" >> "${file}"

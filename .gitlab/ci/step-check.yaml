@@ -45,7 +45,7 @@ shell:
 # Yaml lint check
 # yaml:
 #   stage: "check"
-#   script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckYamlAnsible"
+#   script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckYamlAnsible gitlab"
 #   only:
 #     - main
 #     - devel

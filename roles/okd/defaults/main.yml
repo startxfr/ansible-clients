@@ -1,0 +1,23 @@
+---
+# Action to perfom on this role
+sc_okd_action: "create"
+
+# targeted release
+sc_okd_release: "4.10.0"
+sc_okd_release_minor: "0.okd-2022-03-07-131213"
+# list of binaries to install
+sc_okd_binaries:
+  - kubectl
+  - oc
+# Create the default binary symlinks
+sc_okd_enable_symlink: true
+# Require become privilege
+sc_okd_become: true
+
+#  URL for dowloading binaries
+sc_okd_download_baseurl: "https://github.com/openshift/okd/releases/download"
+
+# Temporary directory used when downloading binaries
+sc_okd_download_tmpdir: "/tmp/okd"
+# Destination of the binary and aliases
+sc_okd_bin_directory: "/usr/local/bin"
