@@ -1,6 +1,6 @@
 ---
 - name: "create : Start creation if binary doesn't exist"
-  ansible.builtin.block:
+  block:
     - name: "create : Create the temporary directory"
       ansible.builtin.file:
         path: "{{ sc_okd_download_tmpdir }}"
@@ -9,7 +9,7 @@
     - name: "create : Download clients from {{ sc_okd_download_baseurl }}/{{ sc_okd_release }}-{{ sc_okd_release_minor }}/openshift-client-linux-{{ sc_okd_release }}-{{ sc_okd_release_minor }}.tar.gz"
       ansible.builtin.get_url: 
         url: "{{ sc_okd_download_baseurl }}/{{ sc_okd_release }}-{{ sc_okd_release_minor }}/openshift-client-linux-{{ sc_okd_release }}-{{ sc_okd_release_minor }}.tar.gz"
-        dest: "{{ sc_okd_download_tmpdir }}/openshift-client-linux-{{ sc_okd_release }}.tar.gz"
+        dest: "{{ sc_okd_download_tmpdir }}/openshift-client-linux-{{ sc_okd_release }}-{{ sc_okd_release_minor }}.tar.gz"
         timeout: 600
         force: true
         validate_certs: false
@@ -19,31 +19,21 @@
         src: "{{ sc_okd_download_tmpdir }}/openshift-client-linux-{{ sc_okd_release }}-{{ sc_okd_release_minor }}.tar.gz"
         dest: "{{ sc_okd_download_tmpdir }}"
       notify: "remove temp"
-    - name: "create : Create binary oc"
-      ansible.builtin.block:
-        - name: "create : client : Create binary oc into {{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
-          ansible.builtin.copy:
-            src: "{{ sc_okd_download_tmpdir }}/oc"
-            dest: "{{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
-            mode: u=rwx,g=rx,o=rx
-          become: sc_okd_become
-        - name: "create : client : Re-initialize the oc context"
-          include_tasks: "../init.yml"
-        - debug:
-            var: okd_details_kubectl
+    - name: "create : Create binary oc into {{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+      ansible.builtin.copy:
+        src: "{{ sc_okd_download_tmpdir }}/oc"
+        dest: "{{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+        mode: u=rwx,g=rx,o=rx
+      become: sc_okd_become | default(true)
       when: not okd_details_oc.stat.exists and "oc" in sc_okd_binaries
       tags:
         - oc
-    - name: "create : Create binary kubectl"
-      ansible.builtin.block:
-        - name: "create : client : Create binary kubectl into {{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
-          ansible.builtin.copy:
-            src: "{{ sc_okd_download_tmpdir }}/kubectl"
-            dest: "{{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
-            mode: u=rwx,g=rx,o=rx
-          become: sc_okd_become
-        - name: "create : client : Re-initialize the kubectl context"
-          include_tasks: "../init.yml"
+    - name: "create : Create binary kubectl into {{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+      ansible.builtin.copy:
+        src: "{{ sc_okd_download_tmpdir }}/kubectl"
+        dest: "{{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+        mode: u=rwx,g=rx,o=rx
+      become: sc_okd_become | default(true)
       when: not okd_details_kubectl.stat.exists and "kubectl" in sc_okd_binaries
       tags:
         - kubectl
@@ -52,7 +42,7 @@
         src: "{{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
         dest: "{{ sc_okd_bin_directory }}/oc"
         state: link
-      become: sc_okd_become
+      become: sc_okd_become | default(true)
       when: sc_okd_enable_symlink and "oc" in sc_okd_binaries
       tags:
         - oc
@@ -61,7 +51,7 @@
         src: "{{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
         dest: "{{ sc_okd_bin_directory }}/kubectl"
         state: link
-      become: sc_okd_become
+      become: sc_okd_become | default(true)
       when: sc_okd_enable_symlink and "kubectl" in sc_okd_binaries
       tags:
         - kubectl

@@ -3,7 +3,8 @@
   ansible.builtin.file:
     path: "{{ sc_helm_bin_directory }}/helm"
     state: absent
-  become: sc_helm_become
+  become: sc_helm_become | default(true)
+  ignore_errors: yes
   tags:
     - delete
     - clients
@@ -12,7 +13,8 @@
   ansible.builtin.file:
     path: "{{ sc_helm_bin_directory }}/helm-v{{ sc_helm_release }}"
     state: absent
-  become: sc_helm_become
+  become: sc_helm_become | default(true)
+  ignore_errors: yes
   tags:
     - delete
     - clients
