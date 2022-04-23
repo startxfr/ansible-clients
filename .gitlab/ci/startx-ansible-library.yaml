@@ -1,0 +1,22 @@
+
+# 
+# startx gitlab library version 0.0.1-container
+# 
+
+# Default container image
+image: "quay.io/startx/runner-bash:alpine3"
+
+# Library used to build the collection
+.collection-build:
+  script:
+    - "make build-gitlab"
+
+# Library used to test collection content
+.collection-test:
+  script:
+    - "make test-gitlab"
+
+# Library used to publish to galaxy namespace
+.collection-publish:
+  script:
+    - "make publish-gitlab"

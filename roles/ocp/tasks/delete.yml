@@ -3,7 +3,7 @@
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/oc"
     state: absent
-  become: true
+  become: sc_ocp_become
   tags:
     - delete
     - clients
@@ -12,7 +12,7 @@
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
     state: absent
-  become: true
+  become: sc_ocp_become
   tags:
     - delete
     - clients
@@ -21,7 +21,7 @@
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/kubectl"
     state: absent
-  become: true
+  become: sc_ocp_become
   tags:
     - delete
     - clients
@@ -30,7 +30,7 @@
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
     state: absent
-  become: true
+  become: sc_ocp_become
   tags:
     - delete
     - clients

@@ -1,12 +1,12 @@
-# Role MOCP Manager - Repository
+# STARTX Client - OKD
 
-The purpose of this role is to install the co or kubectl client.
-
-This include installing and removing an openshfift client.
+The purpose of this role is to install the oc and/or kubectl client from the Enterprise RedHat mirror.
+This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
 
 ## Requirements
 
-Content in this role requires the Kubernetes Python client to interact with Kubernetes' APIs (required by [community.okd](https://galaxy.ansible.com/community/okd) collection).
+- Ansible runtime
+- Installation of the [startx client collection](https://galaxy.ansible.com/startxfr/client) with `ansible-galaxy collection install startxfr.client`
 
 ## Role Variables
 
@@ -20,7 +20,7 @@ Content in this role requires the Kubernetes Python client to interact with Kube
 
 ## Dependencies
 
-Depend on `geerlingguy.git` and `lvrfrc87.git_acp`, both galaxy collections.
+Depend only on `ansible.builtin`
 
 ## Example playbooks
 

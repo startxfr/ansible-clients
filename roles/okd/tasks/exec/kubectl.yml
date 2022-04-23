@@ -1,0 +1,8 @@
+---
+- name: "exec : kubectl : Execute the native kubectl command"
+  ansible.builtin.shell:
+    cmd: |-
+      {{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }} {{ cmd | default("version") }}
+    executable: /bin/bash
+    chdir: "{{ mm_wc_path }}"
+  register: kubectl_exec_details

@@ -1,0 +1,60 @@
+##
+## STAGES
+##
+
+# Return debug informations
+debug:
+  stage: "check"
+  script: "source .gitlab/ci/startx-library.sh && DisplayCheckDebug"
+  only:
+    - devel
+
+# Return informations details
+info:
+  stage: "check"
+  script: "source .gitlab/ci/startx-library.sh && DisplayCheckInfo"
+  only:
+    - devel
+
+# Requirements check
+requirements:
+  stage: "check"
+  script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckRequirementsAnsible"
+  only:
+    - devel
+
+# Markdown check
+markdown:
+  stage: "check"
+  script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckMarkdownAnsible"
+  only:
+    - main
+    - devel
+    - stable
+    - 0.*
+
+# Shell check
+shell:
+  stage: "check"
+  script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckShellcheckAnsible"
+  only:
+    - main
+    - devel
+    - stable
+
+# Yaml lint check
+# yaml:
+#   stage: "check"
+#   script: "source .gitlab/ci/startx-ansible-library.sh && DisplayCheckYamlAnsible gitlab"
+#   only:
+#     - main
+#     - devel
+#     - stable
+
+# Readthedocs check
+readthedocs:
+  stage: "check"
+  script: "source .gitlab/ci/startx-library.sh && DisplayCheckReadthedocs"
+  only:
+    - main
+    - stable

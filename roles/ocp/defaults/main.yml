@@ -8,6 +8,10 @@ sc_ocp_release: "4.9.8"
 sc_ocp_binaries:
   - kubectl
   - oc
+# Create the default binary symlinks
+sc_ocp_enable_symlink: true
+# Require become privilege
+sc_ocp_become: true
 
 #  URL for dowloading binaries
 sc_ocp_download_baseurl: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp"

@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ../okd
+      vars:
+        sc_okd_action: 'create'
+        sc_okd_release: "4.10.0"
+        sc_okd_release_minor: "0.okd-2022-03-07-131213"
+        sc_okd_binaries: [ "kubectl" ]
+      tags:
+        - create
+    - role: ../okd
+      vars:
+        sc_okd_action: 'create'
+        sc_okd_release: "4.9.0"
+        sc_okd_release_minor: "0.okd-2022-02-12-140851"
+        sc_okd_binaries: [ "oc" ]
+      tags:
+        - create
+    - role: ../okd
+      vars:
+        sc_okd_action: 'delete'
+        sc_okd_release: "4.10.0"
+        sc_okd_release_minor: "0.okd-2022-03-07-131213"
+        sc_okd_binaries: [ "kubectl" ]
+      tags:
+        - delete
