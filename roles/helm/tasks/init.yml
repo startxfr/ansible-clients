@@ -1,0 +1,8 @@
+---
+- name: "init : Check if {{ sc_helm_bin_directory }}/helm-v{{ sc_helm_release }} exist"
+  ansible.builtin.stat:
+    path: "{{ sc_helm_bin_directory }}/helm-v{{ sc_helm_release }}"
+  register: helm_bin_details
+  tags:
+    - init
+    - helm

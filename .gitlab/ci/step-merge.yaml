@@ -47,8 +47,8 @@ merge-version:
     SXGLCI_LAST_TAG=`cat /tmp/last`
     echo "== Found $SXGLCI_LAST_TAG as last tag"
     source .gitlab/ci/startx-ansible-library.sh
-    local collversion=$(galaxyGetCollectionVersion)
-    eval x=$(git tag | tail -n 1 | grep $collversion)
+    collversion=$(galaxyGetCollectionVersion)
+    eval x=$(git tag | grep $collversion)
     if [[ $x != "" ]]; then
       echo "!! Tag $collversion already exist" && exit 0
     fi

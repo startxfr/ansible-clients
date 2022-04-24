@@ -1,0 +1,18 @@
+---
+# Action to perfom on this role
+sc_helm_action: "create"
+
+# targeted release
+sc_helm_release: "3.8.2"
+# Create the default binary symlinks
+sc_helm_enable_symlink: true
+# Require become privilege
+sc_helm_become: true
+
+#  URL for dowloading binaries
+sc_helm_download_baseurl: "https://get.helm.sh"
+
+# Temporary directory used when downloading binaries
+sc_helm_download_tmpdir: "/tmp/helm"
+# Destination of the binary and aliases
+sc_helm_bin_directory: "/usr/local/bin"
