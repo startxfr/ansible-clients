@@ -1,0 +1,5 @@
+---
+# See default main.yml for variable definitions
+
+# Action to perfom on the working-copy
+# sc_aws_action: "none"

@@ -1,0 +1,31 @@
+---
+- name: "create : Start creation if binary doesn't exist"
+  block:
+    - name: "create : Create the temporary directory"
+      ansible.builtin.file:
+        path: "{{ sc_aws_download_tmpdir }}"
+        state: directory
+        recurse: yes
+    - name: "create : Download clients from {{ sc_aws_download_baseurl }}/awscli-exe-linux-x86_64{% if (sc_aws_release and sc_aws_release != "latest") %}-{{ sc_aws_release }}{% endif %}.zip"
+      ansible.builtin.get_url: 
+        url: "{{ sc_aws_download_baseurl }}/awscli-exe-linux-x86_64{% if (sc_aws_release and sc_aws_release != "latest") %}-{{ sc_aws_release }}{% endif %}.zip"
+        dest: "{{ sc_aws_download_tmpdir }}/awscli-{{ sc_aws_release }}.zip"
+        timeout: 600
+        force: true
+        validate_certs: false
+      notify: "remove temp"
+    - name: "create : Unarchive content into {{ sc_aws_download_tmpdir }}"
+      ansible.builtin.unarchive:
+        src: "{{ sc_aws_download_tmpdir }}/awscli-{{ sc_aws_release }}.zip"
+        dest: "{{ sc_aws_download_tmpdir }}"
+      notify: "remove temp"
+    - name: "create : Install binary aws into {{ sc_aws_bin_directory }}/aws"
+      ansible.builtin.shell:
+        cmd: ". {{ sc_aws_download_tmpdir }}/awscli-{{ sc_aws_release }}/aws/install"
+      become: sc_aws_become | default(true)
+      when: not aws_bin_details.stat.exists
+  when: not aws_bin_details.stat.exists
+  tags:
+    - create
+    - clients
+    - aws

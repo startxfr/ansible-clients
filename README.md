@@ -11,6 +11,7 @@ This is the main documentation for the `startxfr.client` ansible collection.
 - [istio role](https://startx-ansible-client.readthedocs.io/en/latest/roles/istio)
 - [terraform role](https://startx-ansible-client.readthedocs.io/en/latest/roles/terraform)
 - [ansible role](https://startx-ansible-client.readthedocs.io/en/latest/roles/ansible)
+- [aws role](https://startx-ansible-client.readthedocs.io/en/latest/roles/aws)
 
 ## History
 

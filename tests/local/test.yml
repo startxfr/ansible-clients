@@ -126,6 +126,16 @@
         sc_ansible_action: 'delete'
       tags:
         - delete
+    - name: Execute the aws role to install default client
+      role: startxfr.client.aws
+      tags:
+        - create
+    - name: Execute the aws role to uninstall default client
+      role: startxfr.client.aws
+      vars:
+        sc_aws_action: 'delete'
+      tags:
+        - delete
   tasks: 
     - name: Execute the ocp role to install default client
       import_role: 
@@ -223,5 +233,19 @@
         name: startxfr.client.ansible
       vars:
         sc_ansible_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the aws role to install default client
+      import_role: 
+        name: startxfr.client.aws
+      vars: 
+        sc_aws_action: 'create'
+      tags:
+        - create
+    - name: Execute the aws role to uninstall default client
+      import_role: 
+        name: startxfr.client.aws
+      vars:
+        sc_aws_action: 'delete'
       tags:
         - delete
