@@ -11,7 +11,8 @@ This is the main documentation for the `startxfr.client` ansible collection.
 - [istio role](roles/istio)
 - [terraform role](roles/terraform)
 - [ansible role](roles/ansible)
-- [aws role](roles/ansible)
+- [aws role](roles/aws)
+- [podman role](roles/podman)
 
 ## History
 
@@ -32,6 +33,7 @@ This is the main documentation for the `startxfr.client` ansible collection.
 | 0.0.21  | 22-04-24 | Add the terraform client role                              |
 | 0.0.22  | 22-04-24 | Add the ansible client role                                |
 | 0.0.23  | 22-04-24 | Add the aws client role                                    |
+| 0.0.24  | 22-04-24 | Add the podman client role                                 |
 
 ## Improve and develop role
 
