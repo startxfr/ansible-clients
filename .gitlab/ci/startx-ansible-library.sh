@@ -142,7 +142,7 @@ function ExecCollectionClean {
     version=$(galaxyGetCollectionVersion)
     echo "======== CLEAN THE ${namespace}-${collection}-${version} COLLECTION in ${context} context"
     rm -rf ${test_dir}
-    rm -rf "${output_dir}/${namespace}-${collection}-*"
+    rm -rf "${output_dir:?}/*"
 }
 
 # Add galaxy section to the ansible config file
