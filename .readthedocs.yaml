@@ -18,8 +18,3 @@ search:
   ignore:
     - 404.html
     - packages/*
-sphinx:
-  fail_on_warning: true
-formats:
-  - pdf
-  - epub
