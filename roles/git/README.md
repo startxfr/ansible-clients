@@ -10,10 +10,10 @@ This role is part of the [STARTX client ansible collection](https://galaxy.ansib
 
 ## Role Variables
 
-| Key                     | Default                                              | Description                                              |
-| ----------------------- | ---------------------------------------------------- | -------------------------------------------------------- |
-| sc_git_action           | create                                               | The action to perform                                    |
-| sc_git_release          | latest                                               | Helm version to install                             |
+| Key            | Default | Description             |
+| -------------- | ------- | ----------------------- |
+| sc_git_action  | create  | The action to perform   |
+| sc_git_release | latest  | Helm version to install |
 
 ## Dependencies
 

@@ -3,9 +3,6 @@
   remote_user: root
   roles:
     - role: ../helm
-      vars:
-        sc_helm_action: 'create'
-        sc_helm_release: "3.8.2"
       tags:
         - create
     - role: ../helm
@@ -23,6 +20,5 @@
     - role: ../helm
       vars:
         sc_helm_action: 'delete'
-        sc_helm_release: "3.8.2"
       tags:
         - delete

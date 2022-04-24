@@ -1,0 +1,16 @@
+---
+- name: Initialize ansible context
+  import_tasks: "init.yml"
+  tags:
+    - always
+    - init
+- name: Create istio context
+  import_tasks: "create.yml"
+  when: sc_istio_action == "create"
+  tags:
+    - create
+- name: Delete istio context
+  import_tasks: "delete.yml"
+  when: sc_istio_action == "delete"
+  tags:
+    - delete

@@ -23,6 +23,8 @@ This is the main documentation for the `startxfr.client` ansible collection.
 | 0.0.15  | 22-04-24 | Include installer into the supported binaries for OKD role |
 | 0.0.16  | 22-04-24 | Stabilize test                                             |
 | 0.0.17  | 22-04-24 | Add the git client role                                    |
+| 0.0.18  | 22-04-24 | Add the istio client role                                  |
+| 0.0.19  | 22-04-24 | Improve test suite                                         |
 
 ## Improve and develop role
 
