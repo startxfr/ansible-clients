@@ -13,3 +13,10 @@
   tags:
     - init
     - oc
+- name: "init : Check if {{ sc_ocp_bin_directory }}/openshift-installer-v{{ sc_ocp_release }} exist"
+  stat:
+    path: "{{ sc_ocp_bin_directory }}/openshift-installer-v{{ sc_ocp_release }}"
+  register: ocp_details_installer
+  tags:
+    - init
+    - installer
