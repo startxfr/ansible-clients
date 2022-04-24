@@ -12,14 +12,26 @@ include:
 
 dependency_scanning:
   stage: test
+  only:
+    - main
+    - stable
 license_scanning:
   stage: test
+  only:
+    - main
+    - stable
 sast:
   stage: test
   variables:
     VALIDATE_SCHEMA: "true"
+  only:
+    - main
+    - stable
 # .secret-analyzer:
 #   stage: test
+#   only:
+#     - main
+#     - stable
 
 
 # Your selected site and scanner profiles:
@@ -30,12 +42,15 @@ dast:
     scanner_profile: "default"
   variables:
     DAST_WEBSITE: "https://startx-ansible-client.readthedocs.io/en/latest"
+  only:
+    - main
+    - stable
 
 # Build the fedora image
 test-collection:
   stage: "test"
   extends: .collection-test
   only:
-    - main
     - devel
+    - main
     - stable
