@@ -2,19 +2,19 @@ version: 2
 
 mkdocs:
   configuration: mkdocs.yml
-# # Optionally set the version of Python and requirements required to build your docs
-# python:
-#    version: 3.8
-# #   install:
-# #   - requirements: docs/requirements.txt
-# formats:
-#   - epub
-#   - pdf
-# search:
-#   ranking:
-#     index.html: 2
-#     api/v1/*: -1
-#     api/v2/*: 4
-#   ignore:
-#     - 404.html
-#     - packages/*
+# Optionally set the version of Python and requirements required to build your docs
+python:
+  version: 3.8
+  install:
+  - requirements: docs/requirements.txt
+formats:
+  - epub
+  - pdf
+search:
+  ranking:
+    index.html: 2
+    api/v1/*: -1
+    api/v2/*: 4
+  ignore:
+    - 404.html
+    - packages/*
