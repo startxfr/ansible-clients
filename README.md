@@ -19,3 +19,4 @@ This is the main documentation for the `startxfr.client` ansible collection.
 | 0.0.12  | 22-04-24 | Stabilize the content                                      |
 | 0.0.14  | 22-04-24 | Include installer into the supported binaries for OCP role |
 | 0.0.15  | 22-04-24 | Include installer into the supported binaries for OKD role |
+| 0.0.16  | 22-04-24 | Stabilize test                                             |
