@@ -1,0 +1,11 @@
+---
+- name: "delete : Delete binary {{ sc_aws_bin_directory }}/aws"
+  ansible.builtin.file:
+    path: "{{ sc_aws_bin_directory }}/aws"
+    state: absent
+  become: sc_aws_become | default(true)
+  ignore_errors: yes
+  tags:
+    - delete
+    - clients
+    - aws

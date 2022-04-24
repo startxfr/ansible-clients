@@ -1,0 +1,18 @@
+---
+# Action to perfom on this role
+sc_aws_action: "create"
+
+# targeted release
+sc_aws_release: "latest"
+# Create the default binary symlinks
+sc_aws_enable_symlink: true
+# Require become privilege
+sc_aws_become: true
+
+#  URL for dowloading binaries
+sc_aws_download_baseurl: "https://awscli.amazonaws.com/"
+
+# Temporary directory used when downloading binaries
+sc_aws_download_tmpdir: "/tmp/aws"
+# Destination of the binary and aliases
+sc_aws_bin_directory: "/usr/local/bin"

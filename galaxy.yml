@@ -1,7 +1,7 @@
 ### REQUIRED
 namespace: startxfr
 name: client
-version: "0.0.22"
+version: "0.0.23"
 readme: README.md
 license:
 - GPL-2.0-or-later
