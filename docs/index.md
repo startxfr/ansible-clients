@@ -10,6 +10,7 @@ This is the main documentation for the `startxfr.client` ansible collection.
 - [git role](roles/git)
 - [istio role](roles/istio)
 - [terraform role](roles/terraform)
+- [ansible role](roles/ansible)
 
 ## History
 
@@ -28,6 +29,7 @@ This is the main documentation for the `startxfr.client` ansible collection.
 | 0.0.19  | 22-04-24 | Improve test suite                                         |
 | 0.0.20  | 22-04-24 | Improve documentation suite                                |
 | 0.0.21  | 22-04-24 | Add the terraform client role                              |
+| 0.0.22  | 22-04-24 | Add the ansible client role                                |
 
 ## Improve and develop role
 

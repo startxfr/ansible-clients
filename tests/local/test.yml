@@ -116,6 +116,16 @@
         sc_terraform_action: 'delete'
       tags:
         - delete
+    - name: Execute the ansible role to install default client
+      role: startxfr.client.ansible
+      tags:
+        - create
+    - name: Execute the ansible role to uninstall default client
+      role: startxfr.client.ansible
+      vars:
+        sc_ansible_action: 'delete'
+      tags:
+        - delete
   tasks: 
     - name: Execute the ocp role to install default client
       import_role: 
@@ -199,5 +209,19 @@
         name: startxfr.client.terraform
       vars:
         sc_terraform_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the ansible role to install default client
+      import_role: 
+        name: startxfr.client.ansible
+      vars: 
+        sc_ansible_action: 'create'
+      tags:
+        - create
+    - name: Execute the ansible role to uninstall default client
+      import_role: 
+        name: startxfr.client.ansible
+      vars:
+        sc_ansible_action: 'delete'
       tags:
         - delete
