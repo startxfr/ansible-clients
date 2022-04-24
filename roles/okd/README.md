@@ -15,6 +15,7 @@ This role is part of the [STARTX client ansible collection](https://galaxy.ansib
 | sc_okd_action           | create                                               | The action to perform                                    |
 | sc_okd_release          | 4.10.0                                               | Openshift version to install                             |
 | sc_okd_release_minor    | 0.okd-2022-03-07-131213                              | Openshift minor version (unsed for install)              |
+| sc_okd_binaries         | [kubectl, oc, installer ]                            | The binaries to install/remove                           |
 | sc_okd_download_baseurl | <https://github.com/openshift/okd/releases/download> | Base url used to download client binaries                |
 | sc_okd_download_tmpdir  | /tmp/okd                                             | Temporary directory used to unarchive downloaded content |
 | sc_okd_bin_directory    | /usr/local/bin                                       | Directory used to store binary content                   |
@@ -25,30 +26,40 @@ Depend only on `ansible.builtin`
 
 ## Example playbooks
 
-### Install openhsift Playbook
+### Install OKD Playbook
 
-Install an 'openshift' client.
+Install all OKD CLI default version (curent is 4.9.8).
 
 ```yaml
-- name: Install an openshift client
+- name: Install an OKD client
   hosts: localhost
   roles:
     - role: startx.client.okd
-      sc_okd_action: "create"
-      sc_okd_release: "4.10.0"
-      sc_okd_release_minor: "0.okd-2022-03-07-131213"
 ```
 
-### Uninstall openhsift Playbook
+### Uninstall OKD Playbook
 
-Uninstall an 'openshift' client.
+Uninstall all OKD CLI default version (curent is 4.9.8).
 
 ```yaml
-- name: Uninstall an openshift client
+- name: Uninstall an OKD client
   hosts: localhost
   roles:
     - role: startx.client.okd
       sc_okd_action: "delete"
+```
+
+
+### Install OKD installer version 4.9.6 Playbook
+
+Install OKD installer CLI 4.9.0 version.
+
+```yaml
+- name: Install an OKD installer in version 4.9.0
+  hosts: localhost
+  roles:
+    - role: startx.client.okd
       sc_okd_release: "4.9.0"
       sc_okd_release_minor: "0.okd-2022-02-12-140851"
+      sc_okd_binaries: [ "installer" ]
 ```

@@ -2,6 +2,7 @@
 - name: "init : Check if {{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }} exist"
   stat:
     path: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
+  when: "kubectl" in sc_ocp_binaries
   register: ocp_details_kubectl
   tags:
     - init
@@ -9,7 +10,16 @@
 - name: "init : Check if {{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }} exist"
   stat:
     path: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
+  when: "oc" in sc_ocp_binaries
   register: ocp_details_oc
   tags:
     - init
     - oc
+- name: "init : Check if {{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }} exist"
+  stat:
+    path: "{{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }}"
+  when: "installer" in sc_ocp_binaries
+  register: ocp_details_installer
+  tags:
+    - init
+    - installer
