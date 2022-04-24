@@ -16,8 +16,8 @@ sast:
   stage: test
   variables:
     VALIDATE_SCHEMA: "true"
-.secret-analyzer:
-  stage: test
+# .secret-analyzer:
+#   stage: test
 
 
 # Your selected site and scanner profiles:
