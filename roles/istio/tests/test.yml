@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ../istio
+      tags:
+        - create
+    - role: ../istio
+      vars:
+        sc_istio_action: 'create'
+        sc_istio_release: "1.12.6"
+      tags:
+        - create
+    - role: ../istio
+      vars:
+        sc_istio_action: 'delete'
+      tags:
+        - delete

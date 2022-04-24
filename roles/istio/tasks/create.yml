@@ -1,0 +1,40 @@
+---
+- name: "create : Start creation if binary doesn't exist"
+  block:
+    - name: "create : Create the temporary directory"
+      ansible.builtin.file:
+        path: "{{ sc_istio_download_tmpdir }}"
+        state: directory
+        recurse: yes
+    - name: "create : Download clients from {{ sc_istio_download_baseurl }}/{{ sc_istio_release }}/istio-{{ sc_istio_release }}-linux-amd64.tar.gz"
+      ansible.builtin.get_url: 
+        url: "{{ sc_istio_download_baseurl }}/{{ sc_istio_release }}/istio-{{ sc_istio_release }}-linux-amd64.tar.gz"
+        dest: "{{ sc_istio_download_tmpdir }}/istio-{{ sc_istio_release }}.tar.gz"
+        timeout: 600
+        force: true
+        validate_certs: false
+      notify: "remove temp"
+    - name: "create : Unarchive content into {{ sc_istio_download_tmpdir }}"
+      ansible.builtin.unarchive:
+        src: "{{ sc_istio_download_tmpdir }}/istio-{{ sc_istio_release }}.tar.gz"
+        dest: "{{ sc_istio_download_tmpdir }}"
+      notify: "remove temp"
+    - name: "create : Create binary istio into {{ sc_istio_bin_directory }}/istioctl-v{{ sc_istio_release }}"
+      ansible.builtin.copy:
+        src: "{{ sc_istio_download_tmpdir }}/istio-{{ sc_istio_release }}/bin/istioctl"
+        dest: "{{ sc_istio_bin_directory }}/istioctl-v{{ sc_istio_release }}"
+        mode: u=rwx,g=rx,o=rx
+      become: sc_istio_become | default(true)
+      when: not istio_bin_details.stat.exists
+    - name: "create : Symbolic link {{ sc_istio_bin_directory }}/istioctl to {{ sc_istio_bin_directory }}/istioctl-v{{ sc_istio_release }}"
+      ansible.builtin.file:
+        src: "{{ sc_istio_bin_directory }}/istioctl-v{{ sc_istio_release }}"
+        dest: "{{ sc_istio_bin_directory }}/istioctl"
+        state: link
+      become: sc_istio_become | default(true)
+      when: sc_istio_enable_symlink
+  when: not istio_bin_details.stat.exists
+  tags:
+    - create
+    - clients
+    - istio
