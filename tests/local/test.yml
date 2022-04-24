@@ -136,6 +136,16 @@
         sc_aws_action: 'delete'
       tags:
         - delete
+    - name: Execute the podman role to install default client
+      role: startxfr.client.podman
+      tags:
+        - create
+    - name: Execute the podman role to uninstall default client
+      role: startxfr.client.podman
+      vars:
+        sc_podman_action: 'delete'
+      tags:
+        - delete
   tasks: 
     - name: Execute the ocp role to install default client
       import_role: 
@@ -247,5 +257,19 @@
         name: startxfr.client.aws
       vars:
         sc_aws_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the podman role to install default client
+      import_role: 
+        name: startxfr.client.podman
+      vars: 
+        sc_podman_action: 'create'
+      tags:
+        - create
+    - name: Execute the podman role to uninstall default client
+      import_role: 
+        name: startxfr.client.podman
+      vars:
+        sc_podman_action: 'delete'
       tags:
         - delete

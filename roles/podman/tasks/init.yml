@@ -1,0 +1,8 @@
+---
+- name: "init : Check if podman exist"
+  ansible.builtin.shell:
+    cmd: "which podman"
+  register: podman_bin_details
+  tags:
+    - init
+    - podman
