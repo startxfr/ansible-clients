@@ -1,6 +1,6 @@
 
 
-version=0.0.19
+version=0.0.20
 collection=client
 
 # Generic actions (default is local)
