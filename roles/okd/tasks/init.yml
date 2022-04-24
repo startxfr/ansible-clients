@@ -2,6 +2,7 @@
 - name: "init : Check if {{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }} exist"
   ansible.builtin.stat:
     path: "{{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+  when: "kubectl" in sc_okd_binaries
   register: okd_details_kubectl
   tags:
     - init
@@ -9,7 +10,16 @@
 - name: "init : Check if {{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }} exist"
   ansible.builtin.stat:
     path: "{{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+  when: "oc" in sc_okd_binaries
   register: okd_details_oc
   tags:
     - init
     - oc
+- name: "init : Check if {{ sc_okd_bin_directory }}/openshift-install-v{{ sc_okd_release }} exist"
+  stat:
+    path: "{{ sc_okd_bin_directory }}/openshift-install-v{{ sc_okd_release }}"
+  when: "installer" in sc_okd_binaries
+  register: okd_details_installer
+  tags:
+    - init
+    - installer
