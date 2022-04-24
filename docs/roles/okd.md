@@ -1,4 +1,4 @@
-# OKD
+# OKD role
 
 The purpose of this role is to install the oc and/or kubectl client from RedHat mirror of the OKD community project.
 This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
@@ -26,9 +26,9 @@ Depend only on `ansible.builtin`
 
 ## Example playbooks
 
-### Install OKD Playbook
+### Install OKD playbook
 
-Install all OKD CLI default version (curent is 4.9.8).
+Install all OKD CLI default version.
 
 ```yaml
 - name: Install an OKD client
@@ -37,20 +37,7 @@ Install all OKD CLI default version (curent is 4.9.8).
     - role: startx.client.okd
 ```
 
-### Uninstall OKD Playbook
-
-Uninstall all OKD CLI default version (curent is 4.9.8).
-
-```yaml
-- name: Uninstall an OKD client
-  hosts: localhost
-  roles:
-    - role: startx.client.okd
-      sc_okd_action: "delete"
-```
-
-
-### Install OKD installer version 4.9.6 Playbook
+### Install OKD installer version 4.9.0 playbook
 
 Install OKD installer CLI 4.9.0 version.
 
@@ -61,5 +48,17 @@ Install OKD installer CLI 4.9.0 version.
     - role: startx.client.okd
       sc_okd_release: "4.9.0"
       sc_okd_release_minor: "0.okd-2022-02-12-140851"
-      sc_okd_binaries: [ "installer" ]
+      sc_okd_binaries: ["installer"]
+```
+
+### Uninstall OKD playbook
+
+Uninstall all OKD CLI default version.
+
+```yaml
+- name: Uninstall an OKD client
+  hosts: localhost
+  roles:
+    - role: startx.client.okd
+      sc_okd_action: "delete"
 ```

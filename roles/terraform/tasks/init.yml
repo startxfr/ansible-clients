@@ -1,0 +1,8 @@
+---
+- name: "init : Check if terraform exist"
+  ansible.builtin.shell:
+    cmd: "which terraform"
+  register: terraform_bin_details
+  tags:
+    - init
+    - terraform

@@ -1,4 +1,4 @@
-# Openshift
+# Openshift role
 
 The purpose of this role is to install the oc, kubectl and/or openshift-install client from the Enterprise RedHat mirror.
 This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
@@ -25,9 +25,9 @@ Depend only on `ansible.builtin`
 
 ## Example playbooks
 
-### Install openshift Playbook
+### Install openshift playbook
 
-Install all openshift CLI default version (curent is 4.9.8).
+Install all openshift CLI default version.
 
 ```yaml
 - name: Install an openshift client
@@ -36,20 +36,7 @@ Install all openshift CLI default version (curent is 4.9.8).
     - role: startx.client.ocp
 ```
 
-### Uninstall openhsift Playbook
-
-Uninstall all openshift CLI default version (curent is 4.9.8).
-
-```yaml
-- name: Uninstall an openshift client
-  hosts: localhost
-  roles:
-    - role: startx.client.ocp
-      sc_ocp_action: "delete"
-```
-
-
-### Install openhsift installer version 4.9.6 Playbook
+### Install openhsift installer version 4.9.6 playbook
 
 Install openshift installer CLI 4.9.6 version.
 
@@ -59,5 +46,17 @@ Install openshift installer CLI 4.9.6 version.
   roles:
     - role: startx.client.ocp
       sc_ocp_release: "4.9.6"
-      sc_ocp_binaries: [ "installer" ]
+      sc_ocp_binaries: ["installer"]
+```
+
+### Uninstall openhsift playbook
+
+Uninstall all openshift CLI default version.
+
+```yaml
+- name: Uninstall an openshift client
+  hosts: localhost
+  roles:
+    - role: startx.client.ocp
+      sc_ocp_action: "delete"
 ```
