@@ -46,11 +46,11 @@ build-gitlab:
 # test local action
 test-gitlab: 
 	@echo "======== TEST GITLAB"
-	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionTest gitlab"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild gitlab && ExecCollectionTest gitlab"
 # clean local action
 publish-gitlab: 
 	@echo "======== PUBLISH GITLAB"
-	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionPublish gitlab $ANSIBLE_GALAXY_TOKEN"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild gitlab && ExecCollectionPublish gitlab $ANSIBLE_GALAXY_TOKEN"
 # clean local action
 clean-gitlab: 
 	@echo "======== CLEAN GITLAB"
