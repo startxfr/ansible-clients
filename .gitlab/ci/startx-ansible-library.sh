@@ -125,13 +125,12 @@ function ExecCollectionPrePublish {
 function ExecCollectionPublish {
     local context namespace collection version
     context=${1:-local}
-    apikey=${2:ANSIBLE_GALAXY_TOKEN}
     namespace=$(galaxyGetCollectionNamespace)
     collection=$(galaxyGetCollectionName)
     version=$(galaxyGetCollectionVersion)
     echo "======== PUBLISH THE ${namespace}-${collection}-${version} COLLECTION in ${context} context"
     # Publish the client collection
-    ansible-galaxy collection publish "${output_dir}/${namespace}-${collection}-${version}.tar.gz" --api-key "$apikey"
+    ansible-galaxy collection publish "${output_dir}/${namespace}-${collection}-${version}.tar.gz" -v 
 }
 
 # Clean the client collection temparary resources
