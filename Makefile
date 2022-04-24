@@ -1,6 +1,6 @@
 
 
-version=0.0.11
+version=0.0.12
 collection=client
 
 # Generic actions (default is local)
@@ -50,7 +50,7 @@ test-gitlab:
 # clean local action
 publish-gitlab: 
 	@echo "======== PUBLISH GITLAB"
-	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild gitlab && ExecCollectionPublish gitlab $ANSIBLE_GALAXY_TOKEN"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild gitlab && ExecCollectionPublish gitlab"
 # clean local action
 clean-gitlab: 
 	@echo "======== CLEAN GITLAB"
