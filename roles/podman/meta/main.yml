@@ -1,0 +1,11 @@
+galaxy_info:
+  author: Startx
+  company: Startx
+  description: Install/uninstall various releases of podman CLI.
+  issue_tracker_url: https://podmanlab.com/startx1/ansible/client/-/issues/new
+  license: license (GPL-2.0-or-later, MIT, etc)
+  min_ansible_version: 2.9
+  galaxy_tags: 
+    - startx
+    - client
+    - podman

@@ -12,6 +12,7 @@ This is the main documentation for the `startxfr.client` ansible collection.
 - [terraform role](https://startx-ansible-client.readthedocs.io/en/latest/roles/terraform)
 - [ansible role](https://startx-ansible-client.readthedocs.io/en/latest/roles/ansible)
 - [aws role](https://startx-ansible-client.readthedocs.io/en/latest/roles/aws)
+- [podman role](https://startx-ansible-client.readthedocs.io/en/latest/roles/podman)
 
 ## History
 
