@@ -79,7 +79,7 @@ function galaxyGetCollectionVersion {
     galaxyManifestGetKey ".version"
 }
 
-# Build the client collection
+# Build the collection
 function ExecCollectionBuild {
     local context namespace collection version
     context=${1:-local}
@@ -90,7 +90,7 @@ function ExecCollectionBuild {
     ansible-galaxy collection build --force --output-path ${output_dir}
 }
 
-# Test the client collection
+# Test the collection
 function ExecCollectionTest {
     local context namespace collection version
     context=${1:-local}
@@ -116,12 +116,12 @@ function ExecCollectionTest {
     export ANSIBLE_CONFIG=$(pwd)/ansible.cfg
 }
 
-# Publish the client collection
+# Publish the collection
 function ExecCollectionPrePublish {
     addGalaxyServerToConfig ansible.cfg "${ANSIBLE_GALAXY_TOKEN:-xxxxxxxx} release_galaxy https://galaxy.ansible.com"
 }
 
-# Publish the client collection
+# Publish the collection
 function ExecCollectionPublish {
     local context namespace collection version
     context=${1:-local}
@@ -129,11 +129,11 @@ function ExecCollectionPublish {
     collection=$(galaxyGetCollectionName)
     version=$(galaxyGetCollectionVersion)
     echo "======== PUBLISH THE ${namespace}-${collection}-${version} COLLECTION in ${context} context"
-    # Publish the client collection
+    # Publish the collection
     ansible-galaxy collection publish "${output_dir}/${namespace}-${collection}-${version}.tar.gz" --api-key "$ANSIBLE_GALAXY_TOKEN"
 }
 
-# Clean the client collection temparary resources
+# Clean the collection temparary resources
 function ExecCollectionClean {
     local context namespace collection version
     context=${1:-local}
