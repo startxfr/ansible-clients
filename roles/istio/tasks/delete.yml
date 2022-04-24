@@ -1,0 +1,21 @@
+---
+- name: "delete : Delete symbolic link {{ sc_istio_bin_directory }}/istioctl"
+  ansible.builtin.file:
+    path: "{{ sc_istio_bin_directory }}/istioctl"
+    state: absent
+  become: sc_istio_become | default(true)
+  ignore_errors: yes
+  tags:
+    - delete
+    - clients
+    - istio
+- name: "delete : Delete binary {{ sc_istio_bin_directory }}/istioctl-v{{ sc_istio_release }}"
+  ansible.builtin.file:
+    path: "{{ sc_istio_bin_directory }}/istioctl-v{{ sc_istio_release }}"
+    state: absent
+  become: sc_istio_become | default(true)
+  ignore_errors: yes
+  tags:
+    - delete
+    - clients
+    - istio

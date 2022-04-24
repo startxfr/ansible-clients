@@ -1,0 +1,18 @@
+---
+# Action to perfom on this role
+sc_istio_action: "create"
+
+# targeted release
+sc_istio_release: "1.13.3"
+# Create the default binary symlinks
+sc_istio_enable_symlink: true
+# Require become privilege
+sc_istio_become: true
+
+#  URL for dowloading binaries
+sc_istio_download_baseurl: "https://github.com/istio/istio/releases/download"
+
+# Temporary directory used when downloading binaries
+sc_istio_download_tmpdir: "/tmp/istio"
+# Destination of the binary and aliases
+sc_istio_bin_directory: "/usr/local/bin"

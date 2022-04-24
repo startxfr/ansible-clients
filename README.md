@@ -4,9 +4,11 @@ This is the main documentation for the `startxfr.client` ansible collection.
 
 ## Roles
 
-- [ocp role](roles/ocp/README.md)
-- [okd role](roles/okd/README.md)
-- [helm role](roles/helm/README.md)
+- [ocp role](https://startx-ansible-client.readthedocs.io/en/latest/roles/ocp)
+- [okd role](https://startx-ansible-client.readthedocs.io/en/latest/roles/okd)
+- [helm role](https://startx-ansible-client.readthedocs.io/en/latest/roles/helm)
+- [git role](https://startx-ansible-client.readthedocs.io/en/latest/roles/git)
+- [istio role](https://startx-ansible-client.readthedocs.io/en/latest/roles/istio)
 
 ## History
 
@@ -20,3 +22,6 @@ This is the main documentation for the `startxfr.client` ansible collection.
 | 0.0.14  | 22-04-24 | Include installer into the supported binaries for OCP role |
 | 0.0.15  | 22-04-24 | Include installer into the supported binaries for OKD role |
 | 0.0.16  | 22-04-24 | Stabilize test                                             |
+| 0.0.17  | 22-04-24 | Add the git client role                                    |
+| 0.0.18  | 22-04-24 | Add the istio client role                                  |
+| 0.0.19  | 22-04-24 | Improve test suite                                         |

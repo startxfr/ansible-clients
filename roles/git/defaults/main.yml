@@ -1,0 +1,6 @@
+---
+# Action to perfom on this role
+sc_git_action: "create"
+
+# targeted release
+sc_git_release: "latest"
