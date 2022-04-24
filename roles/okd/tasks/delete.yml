@@ -5,6 +5,7 @@
     state: absent
   become: sc_okd_become | default(true)
   ignore_errors: yes
+  when: "oc" in sc_okd_binaries
   tags:
     - delete
     - clients
@@ -15,27 +16,30 @@
     state: absent
   become: sc_okd_become | default(true)
   ignore_errors: yes
+  when: "oc" in sc_okd_binaries
   tags:
     - delete
     - clients
     - oc
-- name: "delete : Delete symbolic link {{ sc_okd_bin_directory }}/kubectl"
+- name: "delete : Delete symbolic link {{ sc_okd_bin_directory }}/openshift-install"
   ansible.builtin.file:
-    path: "{{ sc_okd_bin_directory }}/kubectl"
+    path: "{{ sc_okd_bin_directory }}/openshift-install"
     state: absent
   become: sc_okd_become | default(true)
   ignore_errors: yes
+  when: "installer" in sc_okd_binaries
   tags:
     - delete
     - clients
-    - kubectl
-- name: "delete : Delete binary {{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+    - installer
+- name: "delete : Delete binary {{ sc_okd_bin_directory }}/openshift-install-v{{ sc_okd_release }}"
   ansible.builtin.file:
-    path: "{{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
+    path: "{{ sc_okd_bin_directory }}/openshift-install-v{{ sc_okd_release }}"
     state: absent
   become: sc_okd_become | default(true)
   ignore_errors: yes
+  when: "installer" in sc_okd_binaries
   tags:
     - delete
     - clients
-    - kubectl
+    - installer

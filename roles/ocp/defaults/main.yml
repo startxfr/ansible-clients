@@ -8,6 +8,7 @@ sc_ocp_release: "4.9.8"
 sc_ocp_binaries:
   - kubectl
   - oc
+  - installer
 # Create the default binary symlinks
 sc_ocp_enable_symlink: true
 # Require become privilege
