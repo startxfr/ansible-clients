@@ -1,0 +1,16 @@
+---
+- name: Initialize ansible context
+  import_tasks: "init.yml"
+  tags:
+    - always
+    - init
+- name: Create vault context
+  import_tasks: "create.yml"
+  when: sc_vault_action == "create"
+  tags:
+    - create
+- name: Delete vault context
+  import_tasks: "delete.yml"
+  when: sc_vault_action == "delete"
+  tags:
+    - delete
