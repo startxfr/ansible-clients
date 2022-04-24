@@ -130,7 +130,7 @@ function ExecCollectionPublish {
     version=$(galaxyGetCollectionVersion)
     echo "======== PUBLISH THE ${namespace}-${collection}-${version} COLLECTION in ${context} context"
     # Publish the client collection
-    ansible-galaxy collection publish "${output_dir}/${namespace}-${collection}-${version}.tar.gz"
+    ansible-galaxy collection publish "${output_dir}/${namespace}-${collection}-${version}.tar.gz" --api-key "$ANSIBLE_GALAXY_TOKEN"
 }
 
 # Clean the client collection temparary resources
