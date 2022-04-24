@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ../git
+      vars:
+        sc_git_action: 'create'
+        sc_git_release: "3.8.2"
+      tags:
+        - create
+    - role: ../git
+      vars:
+        sc_git_action: 'create'
+        sc_git_release: "3.8.0"
+      tags:
+        - create
+    - role: ../git
+      vars:
+        sc_git_action: 'create'
+        sc_git_release: "3.7.2"
+      tags:
+        - create
+    - role: ../git
+      vars:
+        sc_git_action: 'delete'
+        sc_git_release: "3.8.2"
+      tags:
+        - delete

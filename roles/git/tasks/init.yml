@@ -1,0 +1,8 @@
+---
+- name: "init : Check if git exist"
+  ansible.builtin.shell:
+    cmd: "which git"
+  register: git_bin_details
+  tags:
+    - init
+    - git
