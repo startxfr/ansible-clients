@@ -1,4 +1,4 @@
-# Helm
+# Helm role
 
 The purpose of this role is to install the helm client from the helm community project.
 This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
@@ -10,13 +10,13 @@ This role is part of the [STARTX client ansible collection](https://galaxy.ansib
 
 ## Role Variables
 
-| Key                     | Default                                              | Description                                              |
-| ----------------------- | ---------------------------------------------------- | -------------------------------------------------------- |
-| sc_helm_action           | create                                               | The action to perform                                    |
-| sc_helm_release          | 3.8.2                                               | Helm version to install                             |
+| Key                      | Default               | Description                                              |
+| ------------------------ | --------------------- | -------------------------------------------------------- |
+| sc_helm_action           | create                | The action to perform                                    |
+| sc_helm_release          | 3.8.2                 | Helm version to install                                  |
 | sc_helm_download_baseurl | <https://get.helm.sh> | Base url used to download client binaries                |
-| sc_helm_download_tmpdir  | /tmp/helm                                             | Temporary directory used to unarchive downloaded content |
-| sc_helm_bin_directory    | /usr/local/bin                                       | Directory used to store binary content                   |
+| sc_helm_download_tmpdir  | /tmp/helm             | Temporary directory used to unarchive downloaded content |
+| sc_helm_bin_directory    | /usr/local/bin        | Directory used to store binary content                   |
 
 ## Dependencies
 
@@ -24,22 +24,32 @@ Depend only on `ansible.builtin`
 
 ## Example playbooks
 
-### Install openhsift Playbook
+### Install helm playbook
 
-Install an 'helm' client.
+Install helm CLI.
 
 ```yaml
 - name: Install an helm client
   hosts: localhost
   roles:
     - role: startx.client.helm
-      sc_helm_action: "create"
+```
+
+### Install helm version 3.8.2 playbook
+
+Install helm CLI 3.8.2 version.
+
+```yaml
+- name: Install an helm client in version 3.8.2
+  hosts: localhost
+  roles:
+    - role: startx.client.helm
       sc_helm_release: "3.8.2"
 ```
 
-### Uninstall openhsift Playbook
+### Uninstall helm playbook
 
-Uninstall an 'helm' client.
+Uninstall helm CLI.
 
 ```yaml
 - name: Uninstall an helm client
@@ -47,5 +57,4 @@ Uninstall an 'helm' client.
   roles:
     - role: startx.client.helm
       sc_helm_action: "delete"
-      sc_helm_release: "3.8.2"
 ```

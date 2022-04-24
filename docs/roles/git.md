@@ -1,4 +1,4 @@
-# Git
+# Git role
 
 The purpose of this role is to install the git client from the git community project.
 This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
@@ -10,10 +10,10 @@ This role is part of the [STARTX client ansible collection](https://galaxy.ansib
 
 ## Role Variables
 
-| Key            | Default | Description             |
-| -------------- | ------- | ----------------------- |
-| sc_git_action  | create  | The action to perform   |
-| sc_git_release | latest  | Helm version to install |
+| Key            | Default | Description            |
+| -------------- | ------- | ---------------------- |
+| sc_git_action  | create  | The action to perform  |
+| sc_git_release | latest  | Git version to install |
 
 ## Dependencies
 
@@ -21,22 +21,32 @@ Depend only on `ansible.builtin`
 
 ## Example playbooks
 
-### Install openhsift Playbook
+### Install git playbook
 
-Install an 'git' client.
+Install git CLI.
 
 ```yaml
 - name: Install an git client
   hosts: localhost
   roles:
     - role: startx.client.git
-      sc_git_action: "create"
-      sc_git_release: "3.8.2"
 ```
 
-### Uninstall openhsift Playbook
+### Install git version 2.34.1 playbook
 
-Uninstall an 'git' client.
+Install git CLI 2.34.1 version.
+
+```yaml
+- name: Install an git client
+  hosts: localhost
+  roles:
+    - role: startx.client.git
+      sc_git_release: "2.34.1"
+```
+
+### Uninstall git playbook
+
+Uninstall git CLI.
 
 ```yaml
 - name: Uninstall an git client
@@ -44,5 +54,4 @@ Uninstall an 'git' client.
   roles:
     - role: startx.client.git
       sc_git_action: "delete"
-      sc_git_release: "3.8.2"
 ```
