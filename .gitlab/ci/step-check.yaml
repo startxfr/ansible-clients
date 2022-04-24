@@ -31,7 +31,7 @@ markdown:
     - main
     - devel
     - stable
-    - 0.*
+    - tags
 
 # Shell check
 shell:
