@@ -4,15 +4,16 @@ This is the main documentation for the `startxfr.client` ansible collection.
 
 ## Roles
 
-- [ocp role](roles/ocp)
-- [okd role](roles/okd)
-- [helm role](roles/helm)
-- [git role](roles/git)
-- [istio role](roles/istio)
-- [terraform role](roles/terraform)
-- [ansible role](roles/ansible)
-- [aws role](roles/aws)
-- [podman role](roles/podman)
+- [ocp role](roles/ocp/)
+- [okd role](roles/okd/)
+- [helm role](roles/helm/)
+- [git role](roles/git/)
+- [istio role](roles/istio/)
+- [terraform role](roles/terraform/)
+- [ansible role](roles/ansible/)
+- [aws role](roles/aws/)
+- [podman role](roles/podman/)
+- [vault role](roles/vault/)
 
 ## History
 
@@ -34,6 +35,7 @@ This is the main documentation for the `startxfr.client` ansible collection.
 | 0.0.22  | 22-04-24 | Add the ansible client role                                |
 | 0.0.23  | 22-04-24 | Add the aws client role                                    |
 | 0.0.24  | 22-04-24 | Add the podman client role                                 |
+| 0.0.25  | 22-04-24 | Add the vaul client role                                   |
 
 ## Improve and develop role
 

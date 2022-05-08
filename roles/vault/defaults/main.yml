@@ -1,0 +1,6 @@
+---
+# Action to perfom on this role
+sc_vault_action: "create"
+
+# targeted release
+sc_vault_release: "latest"

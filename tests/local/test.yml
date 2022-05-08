@@ -146,6 +146,16 @@
         sc_podman_action: 'delete'
       tags:
         - delete
+    - name: Execute the vault role to install default client
+      role: startxfr.client.vault
+      tags:
+        - create
+    - name: Execute the vault role to uninstall default client
+      role: startxfr.client.vault
+      vars:
+        sc_vault_action: 'delete'
+      tags:
+        - delete
   tasks: 
     - name: Execute the ocp role to install default client
       import_role: 
@@ -271,5 +281,19 @@
         name: startxfr.client.podman
       vars:
         sc_podman_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the vault role to install default client
+      import_role: 
+        name: startxfr.client.vault
+      vars: 
+        sc_vault_action: 'create'
+      tags:
+        - create
+    - name: Execute the vault role to uninstall default client
+      import_role: 
+        name: startxfr.client.vault
+      vars:
+        sc_vault_action: 'delete'
       tags:
         - delete
