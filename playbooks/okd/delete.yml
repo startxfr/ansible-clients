@@ -1,0 +1,21 @@
+---
+- name: Delete okd
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the okd role to uninstall okd
+      role: startxfr.client.okd
+      vars:
+        sc_okd_action: 'delete'
+      tags:
+        - delete
+  # tasks: 
+  #   - name: Execute the okd task to uninstall okd
+  #     import_role: 
+  #       name: startxfr.client.okd
+  #     vars:
+  #       sc_okd_action: 'delete'
+  #     tags:
+  #       - delete

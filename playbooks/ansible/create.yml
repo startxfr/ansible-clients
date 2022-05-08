@@ -1,0 +1,21 @@
+---
+- name: Create ansible
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the ansible role to install ansible
+      role: startxfr.client.ansible
+      vars: 
+        sc_ansible_action: 'create'
+      tags:
+        - create
+  # tasks: 
+  #   - name: Execute the ansible task to install ansible
+  #     import_role: 
+  #       name: startxfr.client.ansible
+  #     vars: 
+  #       sc_ansible_action: 'create'
+  #     tags:
+  #       - create

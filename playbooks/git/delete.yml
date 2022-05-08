@@ -1,0 +1,21 @@
+---
+- name: Delete git
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the git role to uninstall git
+      role: startxfr.client.git
+      vars:
+        sc_git_action: 'delete'
+      tags:
+        - delete
+  # tasks: 
+  #   - name: Execute the git task to uninstall git
+  #     import_role: 
+  #       name: startxfr.client.git
+  #     vars:
+  #       sc_git_action: 'delete'
+  #     tags:
+  #       - delete

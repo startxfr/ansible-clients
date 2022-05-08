@@ -1,0 +1,21 @@
+---
+- name: Create terraform
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the terraform role to install terraform
+      role: startxfr.client.terraform
+      vars: 
+        sc_terraform_action: 'create'
+      tags:
+        - create
+  # tasks: 
+  #   - name: Execute the terraform task to install terraform
+  #     import_role: 
+  #       name: startxfr.client.terraform
+  #     vars: 
+  #       sc_terraform_action: 'create'
+  #     tags:
+  #       - create
