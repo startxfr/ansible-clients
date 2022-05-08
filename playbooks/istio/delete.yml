@@ -1,0 +1,21 @@
+---
+- name: Delete istio
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the istio role to uninstall istio
+      role: startxfr.client.istio
+      vars:
+        sc_istio_action: 'delete'
+      tags:
+        - delete
+  # tasks: 
+  #   - name: Execute the istio task to uninstall istio
+  #     import_role: 
+  #       name: startxfr.client.istio
+  #     vars:
+  #       sc_istio_action: 'delete'
+  #     tags:
+  #       - delete

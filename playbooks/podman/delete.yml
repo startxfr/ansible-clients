@@ -1,0 +1,21 @@
+---
+- name: Delete podman
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the podman role to uninstall podman
+      role: startxfr.client.podman
+      vars:
+        sc_podman_action: 'delete'
+      tags:
+        - delete
+  # tasks: 
+  #   - name: Execute the podman task to uninstall podman
+  #     import_role: 
+  #       name: startxfr.client.podman
+  #     vars:
+  #       sc_podman_action: 'delete'
+  #     tags:
+  #       - delete

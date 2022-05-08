@@ -1,0 +1,21 @@
+---
+- name: Delete aws
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the aws role to uninstall aws
+      role: startxfr.client.aws
+      vars:
+        sc_aws_action: 'delete'
+      tags:
+        - delete
+  # tasks: 
+  #   - name: Execute the aws task to uninstall aws
+  #     import_role: 
+  #       name: startxfr.client.aws
+  #     vars:
+  #       sc_aws_action: 'delete'
+  #     tags:
+  #       - delete

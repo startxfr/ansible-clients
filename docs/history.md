@@ -2,9 +2,10 @@
 
 ## Version 0.1
 
-| version | Date     | Description         |
-| ------- | -------- | ------------------- |
-| 0.1.0   | 22-05-08 | sable version 0.1.0 |
+| version | Date     | Description                     |
+| ------- | -------- | ------------------------------- |
+| 0.1.0   | 22-05-08 | stable version 0.1.0            |
+| 0.1.0   | 22-05-08 | add collection playook examples |
 
 ## Version 0.0
 

@@ -1,0 +1,21 @@
+---
+- name: Create istio
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the istio role to install istio
+      role: startxfr.client.istio
+      vars: 
+        sc_istio_action: 'create'
+      tags:
+        - create
+  # tasks: 
+  #   - name: Execute the istio task to install istio
+  #     import_role: 
+  #       name: startxfr.client.istio
+  #     vars: 
+  #       sc_istio_action: 'create'
+  #     tags:
+  #       - create
