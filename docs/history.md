@@ -1,5 +1,11 @@
 # Release history
 
+## Version 0.1
+
+| version | Date     | Description         |
+| ------- | -------- | ------------------- |
+| 0.1.0   | 22-05-08 | sable version 0.1.0 |
+
 ## Version 0.0
 
 | version | Date     | Description                                                |
