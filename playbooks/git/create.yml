@@ -1,0 +1,21 @@
+---
+- name: Create git
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the git role to install git
+      role: startxfr.client.git
+      vars: 
+        sc_git_action: 'create'
+      tags:
+        - create
+  # tasks: 
+  #   - name: Execute the git task to install git
+  #     import_role: 
+  #       name: startxfr.client.git
+  #     vars: 
+  #       sc_git_action: 'create'
+  #     tags:
+  #       - create

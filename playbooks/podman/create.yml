@@ -1,0 +1,21 @@
+---
+- name: Create podman
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the podman role to install podman
+      role: startxfr.client.podman
+      vars: 
+        sc_podman_action: 'create'
+      tags:
+        - create
+  # tasks: 
+  #   - name: Execute the podman task to install podman
+  #     import_role: 
+  #       name: startxfr.client.podman
+  #     vars: 
+  #       sc_podman_action: 'create'
+  #     tags:
+  #       - create
