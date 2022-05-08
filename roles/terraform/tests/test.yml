@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ../terraform
+      tags:
+        - create
+    - role: ../terraform
+      vars:
+        sc_terraform_action: 'create'
+        sc_terraform_release: "1.1.8"
+      tags:
+        - create
+    - role: ../terraform
+      vars:
+        sc_terraform_action: 'delete'
+      tags:
+        - delete

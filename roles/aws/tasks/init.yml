@@ -1,0 +1,8 @@
+---
+- name: "init : Check if {{ sc_aws_bin_directory }}/aws exist"
+  ansible.builtin.stat:
+    path: "{{ sc_aws_bin_directory }}/aws"
+  register: aws_bin_details
+  tags:
+    - init
+    - aws

@@ -1,0 +1,11 @@
+---
+- name: "delete : Uninstall git{% if (sc_git_release and sc_git_release != "latest") %}-{{ sc_git_release }}{% endif %} package"
+  ansible.builtin.package: 
+    name: "git{% if (sc_git_release and sc_git_release != "latest") %}-{{ sc_git_release }}{% endif %}"
+    state: absent
+  become: yes
+  when: git_bin_details.rc == 0
+  tags:
+    - delete
+    - clients
+    - git

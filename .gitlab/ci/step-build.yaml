@@ -8,4 +8,4 @@ build-collection:
   extends: .collection-build
   only:
     - stable
-    - 0.*
+    - tags

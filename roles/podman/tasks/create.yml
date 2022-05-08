@@ -1,0 +1,11 @@
+---
+- name: "create : Install podman{% if (sc_podman_release and sc_podman_release != "latest") %}-{{ sc_podman_release }}{% endif %} package"
+  ansible.builtin.package: 
+    name: "podman{% if (sc_podman_release and sc_podman_release != "latest") %}-{{ sc_podman_release }}{% endif %}"
+    state: present
+  become: yes
+  when: podman_bin_details.rc != 0
+  tags:
+    - create
+    - clients
+    - podman

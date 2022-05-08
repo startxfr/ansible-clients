@@ -5,66 +5,64 @@
   become: false
   gather_facts: false
   roles:
-    # - name: Execute the ocp role to install default client
-    #   role: startxfr.client.ocp
-    #   tags:
-    #     - create
-    # - name: Execute the ocp role to install kubectl in version 4.9.8
-    #   role: startxfr.client.ocp
-    #   vars:
-    #     sc_ocp_release: "4.9.8"
-    #     sc_ocp_binaries: [ "kubectl" ]
-    #   tags:
-    #     - create
-    # - name: Execute the ocp role to install oc in version 4.9.8
-    #   role: startxfr.client.ocp
-    #   vars:
-    #     sc_ocp_release: "4.9.8"
-    #     sc_ocp_binaries: [ "oc" ]
-    #   tags:
-    #     - create
-    # - name: Execute the ocp role to install personalised client
-    #   role: startxfr.client.ocp
-    #   vars: 
-    #     sc_ocp_action: 'create'
-    #     sc_ocp_enable_symlink: false
-    #     sc_ocp_become: false
-    #     sc_ocp_bin_directory: "/tmp"
-    #   tags:
-    #     - create
-    # - name: Execute the ocp role to uninstall default client
-    #   role: startxfr.client.ocp
-    #   vars:
-    #     sc_ocp_action: 'delete'
-    #   tags:
-    #     - delete
-    # - name: Execute the ocp role to uninstall 4.9.8 client
-    #   role: startxfr.client.ocp
-    #   vars:
-    #     sc_ocp_release: "4.9.8"
-    #     sc_ocp_action: 'delete'
-    #   tags:
-    #     - delete
-    # - name: Execute the okd role to install default client
-    #   role: startxfr.client.okd
-    #   tags:
-    #     - create
-    # - name: Execute the okd role to install kubectl in version 4.10.0
-    #   role: startxfr.client.okd
-    #   vars:
-    #     sc_okd_action: 'create'
-    #     sc_okd_release: "4.10.0"
-    #     sc_okd_release_minor: "0.okd-2022-03-07-131213"
-    #   tags:
-    #     - create
-    # - name: Execute the okd role to install oc in version 4.9.0
-    #   role: startxfr.client.okd
-    #   vars:
-    #     sc_okd_action: 'create'
-    #     sc_okd_release: "4.9.0"
-    #     sc_okd_release_minor: "0.okd-2022-02-12-140851"
-    #   tags:
-    #     - create
+    - name: Execute the ocp role to install default client
+      role: startxfr.client.ocp
+      tags:
+        - create
+    - name: Execute the ocp role to install kubectl in version 4.9.8
+      role: startxfr.client.ocp
+      vars:
+        sc_ocp_release: "4.9.8"
+        sc_ocp_binaries: [ "kubectl" ]
+      tags:
+        - create
+    - name: Execute the ocp role to install oc in version 4.9.8
+      role: startxfr.client.ocp
+      vars:
+        sc_ocp_release: "4.9.8"
+        sc_ocp_binaries: [ "oc" ]
+      tags:
+        - create
+    - name: Execute the ocp role to install installer in version 4.9.8
+      role: startxfr.client.ocp
+      vars:
+        sc_ocp_release: "4.9.8"
+        sc_ocp_binaries: [ "installer" ]
+      tags:
+        - create
+    - name: Execute the ocp role to install personalised client
+      role: startxfr.client.ocp
+      vars: 
+        sc_ocp_action: 'create'
+        sc_ocp_enable_symlink: false
+        sc_ocp_become: false
+        sc_ocp_bin_directory: "/tmp"
+      tags:
+        - create
+    - name: Execute the ocp role to uninstall default client
+      role: startxfr.client.ocp
+      vars:
+        sc_ocp_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the okd role to install default client
+      role: startxfr.client.okd
+      tags:
+        - create
+    - name: Execute the okd role to install kubectl in version 4.10.0
+      role: startxfr.client.okd
+      vars:
+        sc_okd_action: 'create'
+      tags:
+        - create
+    - name: Execute the okd role to install oc in version 4.9.0
+      role: startxfr.client.okd
+      vars:
+        sc_okd_action: 'create'
+        sc_okd_release: "4.9.0"
+        sc_okd_release_minor: "0.okd-2022-02-12-140851"
+      tags:
+        - create
     - name: Execute the okd role to uninstall default client
       role: startxfr.client.okd
       vars:
@@ -75,23 +73,87 @@
       role: startxfr.client.helm
       tags:
         - create
-    # - name: Execute the helm role to install 3.8.0 client
-    #   role: startxfr.client.helm
-    #   vars:
-    #     sc_helm_release: "3.8.0"
-    #   tags:
-    #     - create
-    # - name: Execute the helm role to explicitly install 3.7.2 client
-    #   role: startxfr.client.helm
-    #   vars:
-    #     sc_helm_action: 'create'
-    #     sc_helm_release: "3.7.2"
-    #   tags:
-    #     - create
+    - name: Execute the helm role to explicitly install 3.7.2 client
+      role: startxfr.client.helm
+      vars:
+        sc_helm_action: 'create'
+        sc_helm_release: "3.7.2"
+      tags:
+        - create
     - name: Execute the helm role to uninstall default client
       role: startxfr.client.helm
       vars:
         sc_helm_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the istio role to install default client
+      role: startxfr.client.istio
+      tags:
+        - create
+    - name: Execute the istio role to uninstall default client
+      role: startxfr.client.istio
+      vars:
+        sc_istio_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the git role to install default client
+      role: startxfr.client.git
+      tags:
+        - create
+    - name: Execute the git role to uninstall default client
+      role: startxfr.client.git
+      vars:
+        sc_git_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the terraform role to install default client
+      role: startxfr.client.terraform
+      tags:
+        - create
+    - name: Execute the terraform role to uninstall default client
+      role: startxfr.client.terraform
+      vars:
+        sc_terraform_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the ansible role to install default client
+      role: startxfr.client.ansible
+      tags:
+        - create
+    - name: Execute the ansible role to uninstall default client
+      role: startxfr.client.ansible
+      vars:
+        sc_ansible_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the aws role to install default client
+      role: startxfr.client.aws
+      tags:
+        - create
+    - name: Execute the aws role to uninstall default client
+      role: startxfr.client.aws
+      vars:
+        sc_aws_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the podman role to install default client
+      role: startxfr.client.podman
+      tags:
+        - create
+    - name: Execute the podman role to uninstall default client
+      role: startxfr.client.podman
+      vars:
+        sc_podman_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the vault role to install default client
+      role: startxfr.client.vault
+      tags:
+        - create
+    - name: Execute the vault role to uninstall default client
+      role: startxfr.client.vault
+      vars:
+        sc_vault_action: 'delete'
       tags:
         - delete
   tasks: 
@@ -102,38 +164,137 @@
         sc_ocp_action: 'create'
       tags:
         - create
-    # - name: Execute the ocp role to uninstall default client
-    #   import_role: 
-    #     name: startxfr.client.ocp
-    #   vars:
-    #     sc_ocp_action: 'delete'
-    #   tags:
-    #     - delete
-    # - name: Execute the okd role to install default client
-    #   import_role: 
-    #     name: startxfr.client.okd
-    #   vars: 
-    #     sc_okd_action: 'create'
-    #   tags:
-    #     - create
-    # - name: Execute the okd role to uninstall default client
-    #   import_role: 
-    #     name: startxfr.client.okd
-    #   vars:
-    #     sc_okd_action: 'delete'
-    #   tags:
-    #     - delete
-    # - name: Execute the helm role to install default client
-    #   import_role: 
-    #     name: startxfr.client.helm
-    #   vars: 
-    #     sc_helm_action: 'create'
-    #   tags:
-    #     - create
-    # - name: Execute the helm role to uninstall default client
-    #   import_role: 
-    #     name: startxfr.client.helm
-    #   vars:
-    #     sc_helm_action: 'delete'
-    #   tags:
-    #     - delete
+    - name: Execute the ocp role to uninstall default client
+      import_role: 
+        name: startxfr.client.ocp
+      vars:
+        sc_ocp_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the okd role to install default client
+      import_role: 
+        name: startxfr.client.okd
+      vars: 
+        sc_okd_action: 'create'
+      tags:
+        - create
+    - name: Execute the okd role to uninstall default client
+      import_role: 
+        name: startxfr.client.okd
+      vars:
+        sc_okd_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the helm role to install default client
+      import_role: 
+        name: startxfr.client.helm
+      vars: 
+        sc_helm_action: 'create'
+      tags:
+        - create
+    - name: Execute the helm role to uninstall default client
+      import_role: 
+        name: startxfr.client.helm
+      vars:
+        sc_helm_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the istio role to install default client
+      import_role: 
+        name: startxfr.client.istio
+      vars: 
+        sc_istio_action: 'create'
+      tags:
+        - create
+    - name: Execute the istio role to uninstall default client
+      import_role: 
+        name: startxfr.client.istio
+      vars:
+        sc_istio_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the git role to install default client
+      import_role: 
+        name: startxfr.client.git
+      vars: 
+        sc_git_action: 'create'
+      tags:
+        - create
+    - name: Execute the git role to uninstall default client
+      import_role: 
+        name: startxfr.client.git
+      vars:
+        sc_git_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the terraform role to install default client
+      import_role: 
+        name: startxfr.client.terraform
+      vars: 
+        sc_terraform_action: 'create'
+      tags:
+        - create
+    - name: Execute the terraform role to uninstall default client
+      import_role: 
+        name: startxfr.client.terraform
+      vars:
+        sc_terraform_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the ansible role to install default client
+      import_role: 
+        name: startxfr.client.ansible
+      vars: 
+        sc_ansible_action: 'create'
+      tags:
+        - create
+    - name: Execute the ansible role to uninstall default client
+      import_role: 
+        name: startxfr.client.ansible
+      vars:
+        sc_ansible_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the aws role to install default client
+      import_role: 
+        name: startxfr.client.aws
+      vars: 
+        sc_aws_action: 'create'
+      tags:
+        - create
+    - name: Execute the aws role to uninstall default client
+      import_role: 
+        name: startxfr.client.aws
+      vars:
+        sc_aws_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the podman role to install default client
+      import_role: 
+        name: startxfr.client.podman
+      vars: 
+        sc_podman_action: 'create'
+      tags:
+        - create
+    - name: Execute the podman role to uninstall default client
+      import_role: 
+        name: startxfr.client.podman
+      vars:
+        sc_podman_action: 'delete'
+      tags:
+        - delete
+    - name: Execute the vault role to install default client
+      import_role: 
+        name: startxfr.client.vault
+      vars: 
+        sc_vault_action: 'create'
+      tags:
+        - create
+    - name: Execute the vault role to uninstall default client
+      import_role: 
+        name: startxfr.client.vault
+      vars:
+        sc_vault_action: 'delete'
+      tags:
+        - delete
+

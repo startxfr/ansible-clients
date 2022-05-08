@@ -1,0 +1,8 @@
+---
+- name: "init : Check if {{ sc_istio_bin_directory }}/istioctl-v{{ sc_istio_release }} exist"
+  ansible.builtin.stat:
+    path: "{{ sc_istio_bin_directory }}/istioctl-v{{ sc_istio_release }}"
+  register: istio_bin_details
+  tags:
+    - init
+    - istio
