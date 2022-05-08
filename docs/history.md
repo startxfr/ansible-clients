@@ -22,3 +22,4 @@
 | 0.0.24  | 22-04-24 | Add the podman client role                                 |
 | 0.0.25  | 22-04-24 | Add the vaul client role                                   |
 | 0.0.27  | 22-05-08 | Improve doc and stablilizing release                       |
+| 0.0.29  | 22-05-08 | Align all startfr collection release to version 0.0.29     |
