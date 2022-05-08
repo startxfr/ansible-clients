@@ -1,0 +1,8 @@
+---
+- name: "init : Check if ansible exist"
+  ansible.builtin.shell:
+    cmd: "which ansible"
+  register: ansible_bin_details
+  tags:
+    - init
+    - ansible

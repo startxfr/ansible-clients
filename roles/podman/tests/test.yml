@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ../podman
+      tags:
+        - create
+    - role: ../podman
+      vars:
+        sc_podman_action: 'create'
+        sc_podman_release: "3.4.4"
+      tags:
+        - create
+    - role: ../podman
+      vars:
+        sc_podman_action: 'delete'
+      tags:
+        - delete

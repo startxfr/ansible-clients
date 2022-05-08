@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ../vault
+      tags:
+        - create
+    - role: ../vault
+      vars:
+        sc_vault_action: 'create'
+        sc_vault_release: "1.9.3"
+      tags:
+        - create
+    - role: ../vault
+      vars:
+        sc_vault_action: 'delete'
+      tags:
+        - delete

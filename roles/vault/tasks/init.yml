@@ -1,0 +1,8 @@
+---
+- name: "init : Check if vault exist"
+  ansible.builtin.shell:
+    cmd: "which vault"
+  register: vault_bin_details
+  tags:
+    - init
+    - vault

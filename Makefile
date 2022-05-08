@@ -1,6 +1,6 @@
 
 
-version=0.0.9
+version=0.0.25
 collection=client
 
 # Generic actions (default is local)
@@ -46,11 +46,11 @@ build-gitlab:
 # test local action
 test-gitlab: 
 	@echo "======== TEST GITLAB"
-	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionTest gitlab"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild gitlab && ExecCollectionTest gitlab"
 # clean local action
 publish-gitlab: 
 	@echo "======== PUBLISH GITLAB"
-	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionPublish gitlab"
+	@bash -c "source .gitlab/ci/startx-ansible-library.sh && ExecCollectionBuild gitlab && ExecCollectionPublish gitlab"
 # clean local action
 clean-gitlab: 
 	@echo "======== CLEAN GITLAB"

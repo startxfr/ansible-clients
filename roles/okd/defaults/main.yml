@@ -9,6 +9,7 @@ sc_okd_release_minor: "0.okd-2022-03-07-131213"
 sc_okd_binaries:
   - kubectl
   - oc
+  - installer
 # Create the default binary symlinks
 sc_okd_enable_symlink: true
 # Require become privilege

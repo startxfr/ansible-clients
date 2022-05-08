@@ -1,0 +1,6 @@
+---
+# Action to perfom on this role
+sc_podman_action: "create"
+
+# targeted release
+sc_podman_release: "latest"

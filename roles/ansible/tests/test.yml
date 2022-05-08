@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ../ansible
+      tags:
+        - create
+    - role: ../ansible
+      vars:
+        sc_ansible_action: 'create'
+        sc_ansible_release: "2.9.27"
+      tags:
+        - create
+    - role: ../ansible
+      vars:
+        sc_ansible_action: 'delete'
+      tags:
+        - delete

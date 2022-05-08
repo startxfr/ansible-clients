@@ -1,0 +1,11 @@
+---
+- name: "delete : Uninstall terraform{% if (sc_terraform_release and sc_terraform_release != "latest") %}-{{ sc_terraform_release }}{% endif %} package"
+  ansible.builtin.package: 
+    name: "terraform{% if (sc_terraform_release and sc_terraform_release != "latest") %}-{{ sc_terraform_release }}{% endif %}"
+    state: absent
+  become: yes
+  when: terraform_bin_details.rc == 0
+  tags:
+    - delete
+    - clients
+    - terraform
