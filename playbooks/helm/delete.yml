@@ -1,0 +1,21 @@
+---
+- name: Delete helm
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the helm role to uninstall helm
+      role: startxfr.client.helm
+      vars:
+        sc_helm_action: 'delete'
+      tags:
+        - delete
+  # tasks: 
+  #   - name: Execute the helm task to uninstall helm
+  #     import_role: 
+  #       name: startxfr.client.helm
+  #     vars:
+  #       sc_helm_action: 'delete'
+  #     tags:
+  #       - delete

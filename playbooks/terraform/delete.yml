@@ -1,0 +1,21 @@
+---
+- name: Delete terraform
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the terraform role to uninstall terraform
+      role: startxfr.client.terraform
+      vars:
+        sc_terraform_action: 'delete'
+      tags:
+        - delete
+  # tasks: 
+  #   - name: Execute the terraform task to uninstall terraform
+  #     import_role: 
+  #       name: startxfr.client.terraform
+  #     vars:
+  #       sc_terraform_action: 'delete'
+  #     tags:
+  #       - delete

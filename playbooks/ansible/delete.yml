@@ -1,0 +1,21 @@
+---
+- name: Delete ansible
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the ansible role to uninstall ansible
+      role: startxfr.client.ansible
+      vars:
+        sc_ansible_action: 'delete'
+      tags:
+        - delete
+  # tasks: 
+  #   - name: Execute the ansible task to uninstall ansible
+  #     import_role: 
+  #       name: startxfr.client.ansible
+  #     vars:
+  #       sc_ansible_action: 'delete'
+  #     tags:
+  #       - delete

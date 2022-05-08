@@ -1,0 +1,21 @@
+---
+- name: Create helm
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the helm role to install helm
+      role: startxfr.client.helm
+      vars: 
+        sc_helm_action: 'create'
+      tags:
+        - create
+  # tasks: 
+  #   - name: Execute the helm task to install helm
+  #     import_role: 
+  #       name: startxfr.client.helm
+  #     vars: 
+  #       sc_helm_action: 'create'
+  #     tags:
+  #       - create

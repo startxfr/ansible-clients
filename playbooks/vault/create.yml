@@ -1,0 +1,21 @@
+---
+- name: Create vault
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  roles:
+    - name: Execute the vault role to install vault
+      role: startxfr.client.vault
+      vars: 
+        sc_vault_action: 'create'
+      tags:
+        - create
+  # tasks: 
+  #   - name: Execute the vault task to install vault
+  #     import_role: 
+  #       name: startxfr.client.vault
+  #     vars: 
+  #       sc_vault_action: 'create'
+  #     tags:
+  #       - create
