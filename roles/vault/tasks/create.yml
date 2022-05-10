@@ -1,4 +1,14 @@
 ---
+- name: "create : Add hashicorp repository"
+  ansible.builtin.get_url:
+    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+    owner: root
+    mode: 0644
+    group: root
+  become: yes
+  when: ansible_os_family == "RedHat"
+
 - name: "create : Install vault{% if (sc_vault_release and sc_vault_release != "latest") %}-{{ sc_vault_release }}{% endif %} package"
   ansible.builtin.package: 
     name: "vault{% if (sc_vault_release and sc_vault_release != "latest") %}-{{ sc_vault_release }}{% endif %}"
