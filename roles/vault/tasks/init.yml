@@ -3,6 +3,8 @@
   ansible.builtin.shell:
     cmd: "which vault"
   register: vault_bin_details
+  changed_when: no
+  ignore_errors: yes
   tags:
     - init
     - vault
