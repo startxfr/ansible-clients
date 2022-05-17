@@ -3,9 +3,9 @@
   ansible.builtin.file:
     path: "{{ sc_okd_bin_directory }}/oc"
     state: absent
-  become: sc_okd_become | default(true)
+  become: "{{ sc_okd_become | default(true) }}"
   ignore_errors: yes
-  when: "oc" in sc_okd_binaries
+  when: '"oc" in sc_okd_binaries'
   tags:
     - delete
     - clients
@@ -14,9 +14,9 @@
   ansible.builtin.file:
     path: "{{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }}"
     state: absent
-  become: sc_okd_become | default(true)
+  become: "{{ sc_okd_become | default(true) }}"
   ignore_errors: yes
-  when: "oc" in sc_okd_binaries
+  when: '"oc" in sc_okd_binaries'
   tags:
     - delete
     - clients
@@ -25,9 +25,9 @@
   ansible.builtin.file:
     path: "{{ sc_okd_bin_directory }}/openshift-install"
     state: absent
-  become: sc_okd_become | default(true)
+  become: "{{ sc_okd_become | default(true) }}"
   ignore_errors: yes
-  when: "installer" in sc_okd_binaries
+  when: '"installer" in sc_okd_binaries'
   tags:
     - delete
     - clients
@@ -36,9 +36,9 @@
   ansible.builtin.file:
     path: "{{ sc_okd_bin_directory }}/openshift-install-v{{ sc_okd_release }}"
     state: absent
-  become: sc_okd_become | default(true)
+  become: "{{ sc_okd_become | default(true) }}"
   ignore_errors: yes
-  when: "installer" in sc_okd_binaries
+  when: '"installer" in sc_okd_binaries'
   tags:
     - delete
     - clients

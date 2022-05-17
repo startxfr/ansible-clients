@@ -1,9 +1,15 @@
 ---
-- name: "create : Create the temporary directory"
-      ansible.builtin.file:
-        path: "{{ sc_okd_download_tmpdir }}"
-        state: directory
-        recurse: yes
+- name: "create : Create temporary directory {{ sc_okd_download_tmpdir }}"
+  ansible.builtin.file:
+    path: "{{ sc_okd_download_tmpdir }}"
+    state: directory
+    recurse: yes
+- name: "create : Create binary directory {{ sc_okd_bin_directory }}"
+  ansible.builtin.file:
+    path: "{{ sc_okd_bin_directory }}"
+    state: directory
+    recurse: yes
+  become: "{{ sc_okd_become | default(false) }}"
 - name: "create : Start creation if client binary doesn't exist"
   block:
     - name: "create : Download clients from {{ sc_okd_download_baseurl }}/{{ sc_okd_release }}-{{ sc_okd_release_minor }}/openshift-client-linux-{{ sc_okd_release }}-{{ sc_okd_release_minor }}.tar.gz"
@@ -13,20 +19,20 @@
         timeout: 600
         force: true
         validate_certs: false
-      when: "kubectl" in sc_okd_binaries or "oc" in sc_okd_binaries
+      when: '"kubectl" in sc_okd_binaries or "oc" in sc_okd_binaries'
       notify: "remove temp"
     - name: "create : Unarchive content into {{ sc_okd_download_tmpdir }}"
       ansible.builtin.unarchive:
         src: "{{ sc_okd_download_tmpdir }}/openshift-client-linux-{{ sc_okd_release }}-{{ sc_okd_release_minor }}.tar.gz"
         dest: "{{ sc_okd_download_tmpdir }}"
-      when: "kubectl" in sc_okd_binaries or "oc" in sc_okd_binaries
+      when: '"kubectl" in sc_okd_binaries or "oc" in sc_okd_binaries'
       notify: "remove temp"
     - name: "create : Create binary oc into {{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}"
       ansible.builtin.copy:
         src: "{{ sc_okd_download_tmpdir }}/oc"
         dest: "{{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}"
         mode: u=rwx,g=rx,o=rx
-      become: sc_okd_become | default(true)
+      become: "{{ sc_okd_become | default(true) }}"
       when: not okd_details_oc.stat.exists and "oc" in sc_okd_binaries
       tags:
         - oc
@@ -35,7 +41,7 @@
         src: "{{ sc_okd_download_tmpdir }}/kubectl"
         dest: "{{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}"
         mode: u=rwx,g=rx,o=rx
-      become: sc_okd_become | default(true)
+      become: "{{ sc_okd_become | default(true) }}"
       when: not okd_details_kubectl.stat.exists and "kubectl" in sc_okd_binaries
       tags:
         - kubectl
@@ -44,7 +50,7 @@
         src: "{{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}"
         dest: "{{ sc_okd_bin_directory }}/oc"
         state: link
-      become: sc_okd_become | default(true)
+      become: "{{ sc_okd_become | default(true) }}"
       when: sc_okd_enable_symlink and "oc" in sc_okd_binaries
       tags:
         - oc
@@ -53,7 +59,7 @@
         src: "{{ sc_okd_bin_directory }}/kubectl-v{{ sc_okd_release }}"
         dest: "{{ sc_okd_bin_directory }}/kubectl"
         state: link
-      become: sc_okd_become | default(true)
+      become: "{{ sc_okd_become | default(true) }}"
       when: sc_okd_enable_symlink and "kubectl" in sc_okd_binaries
       tags:
         - kubectl
@@ -72,20 +78,20 @@
         timeout: 600
         force: true
         validate_certs: false
-      when: "installer" in sc_okd_binaries
+      when: '"installer" in sc_okd_binaries'
       notify: "remove temp"
     - name: "create : Unarchive content into {{ sc_okd_download_tmpdir }}"
       ansible.builtin.unarchive:
         src: "{{ sc_okd_download_tmpdir }}/openshift-install-linux-{{ sc_okd_release }}-{{ sc_okd_release_minor }}.tar.gz"
         dest: "{{ sc_okd_download_tmpdir }}"
-      when: "installer" in sc_okd_binaries
+      when: '"installer" in sc_okd_binaries'
       notify: "remove temp"
     - name: "create : Create binary openshift-installer into {{ sc_okd_bin_directory }}/openshift-install-v{{ sc_okd_release }}"
       ansible.builtin.copy:
         src: "{{ sc_okd_download_tmpdir }}/openshift-install"
         dest: "{{ sc_okd_bin_directory }}/openshift-install-v{{ sc_okd_release }}"
         mode: u=rwx,g=rx,o=rx
-      become: sc_okd_become | default(true)
+      become: "{{ sc_okd_become | default(true) }}"
       when: not okd_details_installer.stat.exists and "installer" in sc_okd_binaries
       tags:
         - installer
@@ -94,7 +100,7 @@
         src: "{{ sc_okd_bin_directory }}/openshift-install-v{{ sc_okd_release }}"
         dest: "{{ sc_okd_bin_directory }}/openshift-install"
         state: link
-      become: sc_okd_become | default(true)
+      become: "{{ sc_okd_become | default(true) }}"
       when: sc_okd_enable_symlink and "installer" in sc_okd_binaries
       tags:
         - installer
