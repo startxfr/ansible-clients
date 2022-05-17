@@ -1,0 +1,8 @@
+---
+- name: "exec : installer : Execute the native openshift-install command"
+  ansible.builtin.shell:
+    cmd: |-
+      {{ sc_okd_bin_directory }}/openshift-install-v{{ sc_okd_release }} {{ sc_okd_exec_cmd | default("version") }}
+    executable: /bin/bash
+    chdir: "{{ sc_okd_exec_path | default(omit) }}"
+  register: sc_okd_exec_installer_return

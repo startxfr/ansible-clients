@@ -2,7 +2,7 @@
 - name: "exec : oc : Execute the native oc command"
   ansible.builtin.shell:
     cmd: |-
-      {{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }} {{ cmd | default("version") }}
+      {{ sc_okd_bin_directory }}/oc-v{{ sc_okd_release }}-{{ sc_okd_release_minor }} {{ sc_okd_exec_cmd | default("version") }}
     executable: /bin/bash
-    chdir: "{{ mm_wc_path }}"
-  register: oc_exec_details
+    chdir: "{{ sc_okd_exec_path | default(omit) }}"
+  register: sc_okd_exec_oc_return
