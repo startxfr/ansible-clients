@@ -3,9 +3,10 @@
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/oc"
     state: absent
-  become: sc_ocp_become | default(true)
+  become: "{{ sc_ocp_become | default(true) }}"
   ignore_errors: yes
-  when: "oc" in sc_ocp_binaries
+  when: >
+    "oc" in sc_ocp_binaries
   tags:
     - delete
     - clients
@@ -14,9 +15,10 @@
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
     state: absent
-  become: sc_ocp_become | default(true)
+  become: "{{ sc_ocp_become | default(true) }}"
   ignore_errors: yes
-  when: "oc" in sc_ocp_binaries
+  when: >
+    "oc" in sc_ocp_binaries
   tags:
     - delete
     - clients
@@ -25,9 +27,10 @@
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/kubectl"
     state: absent
-  become: sc_ocp_become | default(true)
+  become: "{{ sc_ocp_become | default(true) }}"
   ignore_errors: yes
-  when: "kubectl" in sc_ocp_binaries
+  when: >
+    "kubectl" in sc_ocp_binaries
   tags:
     - delete
     - clients
@@ -36,9 +39,10 @@
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
     state: absent
-  become: sc_ocp_become | default(true)
+  become: "{{ sc_ocp_become | default(true) }}"
   ignore_errors: yes
-  when: "kubectl" in sc_ocp_binaries
+  when: >
+    "kubectl" in sc_ocp_binaries
   tags:
     - delete
     - clients
@@ -47,9 +51,10 @@
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/openshift-install"
     state: absent
-  become: sc_ocp_become | default(true)
+  become: "{{ sc_ocp_become | default(true) }}"
   ignore_errors: yes
-  when: "installer" in sc_ocp_binaries
+  when: >
+    "installer" in sc_ocp_binaries
   tags:
     - delete
     - clients
@@ -58,9 +63,10 @@
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }}"
     state: absent
-  become: sc_ocp_become | default(true)
+  become: "{{ sc_ocp_become | default(true) }}"
   ignore_errors: yes
-  when: "installer" in sc_ocp_binaries
+  when: >
+    "installer" in sc_ocp_binaries
   tags:
     - delete
     - clients

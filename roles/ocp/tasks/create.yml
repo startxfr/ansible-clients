@@ -1,9 +1,15 @@
 ---
-- name: "create : Create the temporary directory"
-      ansible.builtin.file:
-        path: "{{ sc_ocp_download_tmpdir }}"
-        state: directory
-        recurse: yes
+- name: "create : Create temporary directory {{ sc_ocp_download_tmpdir }}"
+  ansible.builtin.file:
+    path: "{{ sc_ocp_download_tmpdir }}"
+    state: directory
+    recurse: yes
+- name: "create : Create binary directory {{ sc_ocp_bin_directory }}"
+  ansible.builtin.file:
+    path: "{{ sc_ocp_bin_directory }}"
+    state: directory
+    recurse: yes
+  become: "{{ sc_ocp_become | default(false) }}"
 - name: "create : Start creation if client binary doesn't exist"
   block:
     - name: "create : Download clients from {{ sc_ocp_download_baseurl }}/{{ sc_ocp_release }}/openshift-client-linux-{{ sc_ocp_release }}.tar.gz"
@@ -13,20 +19,24 @@
         timeout: 600
         force: true
         validate_certs: false
-      when: "kubectl" in sc_ocp_binaries or "oc" in sc_ocp_binaries
+      when: >
+        ("kubectl" in sc_ocp_binaries) or 
+        ("oc" in sc_ocp_binaries)
       notify: "remove temp"
     - name: "create : Unarchive content into {{ sc_ocp_download_tmpdir }}"
       ansible.builtin.unarchive:
         src: "{{ sc_ocp_download_tmpdir }}/openshift-client-linux-{{ sc_ocp_release }}.tar.gz"
         dest: "{{ sc_ocp_download_tmpdir }}"
-      when: "kubectl" in sc_ocp_binaries or "oc" in sc_ocp_binaries
+      when: >
+        ("kubectl" in sc_ocp_binaries) or 
+        ("oc" in sc_ocp_binaries)
       notify: "remove temp"
     - name: "create : Create binary oc into {{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
       ansible.builtin.copy:
         src: "{{ sc_ocp_download_tmpdir }}/oc"
         dest: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
         mode: u=rwx,g=rx,o=rx
-      become: sc_ocp_become | default(true)
+      become: "{{ sc_ocp_become | default(true) }}"
       when: not ocp_details_oc.stat.exists and "oc" in sc_ocp_binaries
       tags:
         - oc
@@ -35,8 +45,10 @@
         src: "{{ sc_ocp_download_tmpdir }}/kubectl"
         dest: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
         mode: u=rwx,g=rx,o=rx
-      become: sc_ocp_become | default(true)
-      when: not ocp_details_kubectl.stat.exists and "kubectl" in sc_ocp_binaries
+      become: "{{ sc_ocp_become | default(true) }}"
+      when:
+        - not ocp_details_kubectl.stat.exists
+        - '"kubectl" in sc_ocp_binaries'
       tags:
         - kubectl
     - name: "create : Symbolic link {{ sc_ocp_bin_directory }}/oc to {{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
@@ -44,8 +56,10 @@
         src: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
         dest: "{{ sc_ocp_bin_directory }}/oc"
         state: link
-      become: sc_ocp_become | default(true)
-      when: sc_ocp_enable_symlink and "oc" in sc_ocp_binaries
+      become: "{{ sc_ocp_become | default(true) }}"
+      when: 
+        - sc_ocp_enable_symlink
+        - '"oc" in sc_ocp_binaries'
       tags:
         - oc
     - name: "create : Symbolic link {{ sc_ocp_bin_directory }}/kubectl to {{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
@@ -53,8 +67,10 @@
         src: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
         dest: "{{ sc_ocp_bin_directory }}/kubectl"
         state: link
-      become: sc_ocp_become | default(true)
-      when: sc_ocp_enable_symlink and "kubectl" in sc_ocp_binaries
+      become: "{{ sc_ocp_become | default(true) }}"
+      when: 
+        - sc_ocp_enable_symlink
+        - '"kubectl" in sc_ocp_binaries'
       tags:
         - kubectl
   when: |-
@@ -72,21 +88,23 @@
         timeout: 600
         force: true
         validate_certs: false
-      when: "installer" in sc_ocp_binaries
+      when: '"installer" in sc_ocp_binaries'
       notify: "remove temp"
     - name: "create : Unarchive content into {{ sc_ocp_download_tmpdir }}"
       ansible.builtin.unarchive:
         src: "{{ sc_ocp_download_tmpdir }}/openshift-install-linux-{{ sc_ocp_release }}.tar.gz"
         dest: "{{ sc_ocp_download_tmpdir }}"
-      when: "installer" in sc_ocp_binaries
+      when: '"installer" in sc_ocp_binaries'
       notify: "remove temp"
     - name: "create : Create binary openshift-installer into {{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }}"
       ansible.builtin.copy:
         src: "{{ sc_ocp_download_tmpdir }}/openshift-install"
         dest: "{{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }}"
         mode: u=rwx,g=rx,o=rx
-      become: sc_ocp_become | default(true)
-      when: not ocp_details_installer.stat.exists and "installer" in sc_ocp_binaries
+      become: "{{ sc_ocp_become | default(true) }}"
+      when: 
+        - not ocp_details_installer.stat.exists
+        - '"installer" in sc_ocp_binaries'
       tags:
         - installer
     - name: "create : Symbolic link {{ sc_ocp_bin_directory }}/openshift-install to {{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }}"
@@ -94,12 +112,15 @@
         src: "{{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }}"
         dest: "{{ sc_ocp_bin_directory }}/openshift-install"
         state: link
-      become: sc_ocp_become | default(true)
-      when: sc_ocp_enable_symlink and "installer" in sc_ocp_binaries
+      become: "{{ sc_ocp_become | default(true) }}"
+      when: 
+        - sc_ocp_enable_symlink
+        - '"installer" in sc_ocp_binaries'
       tags:
         - installer
-  when: |-
-    (not ocp_details_installer.stat.exists and "installer" in sc_ocp_binaries)
+  when:
+    - not ocp_details_installer.stat.exists
+    - '"installer" in sc_ocp_binaries'
   tags:
     - create
     - clients

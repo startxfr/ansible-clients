@@ -2,7 +2,7 @@
 - name: "exec : kubectl : Execute the native kubectl command"
   ansible.builtin.shell:
     cmd: |-
-      {{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }} {{ cmd | default("version") }}
+      {{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }} {{ sc_ocp_exec_cmd | default("version") }}
     executable: /bin/bash
-    chdir: "{{ mm_wc_path }}"
-  register: kubectl_exec_details
+    chdir: "{{ sc_ocp_exec_path | default(omit) }}"
+  register: sc_ocp_exec_kubectl_return
