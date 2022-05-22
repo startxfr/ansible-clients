@@ -1,6 +1,4 @@
-# STARTX Client - Ansible
+# STARTX Client : Ansible role
 
-The purpose of this role is to install the ansible client from the ansible community project.
-This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
-
-You can find the [full documentation](https://startx-ansible-client.readthedocs.io/en/latest/roles/ansible) for this role on [startx client readthedocs](https://startx-ansible-client.readthedocs.io/en/latest).
+Read the [startxfr.client.ansible role documentation](https://startx-ansible-client.readthedocs.io/en/latest/roles/ansible/)
+for more information on how to use [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/sclientxcm) ansible role.

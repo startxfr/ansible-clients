@@ -1,6 +1,4 @@
-# STARTX Client - Git
+# STARTX Client : Vault role
 
-The purpose of this role is to install the vault client from the vault community project.
-This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
-
-You can find the [full documentation](https://startx-ansible-client.readthedocs.io/en/latest/roles/vault) for this role on [startx client readthedocs](https://startx-ansible-client.readthedocs.io/en/latest).
+Read the [startxfr.client.vault role documentation](https://startx-vault-client.readthedocs.io/en/latest/roles/vault/)
+for more information on how to use [STARTX client vault collection](https://galaxy.vault.com/startxfr/sclientxcm) vault role.
