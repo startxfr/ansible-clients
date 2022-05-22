@@ -1,4 +1,4 @@
-# Openshift role
+# OCP role
 
 The purpose of this role is to install the oc, kubectl and/or openshift-install client from the Enterprise RedHat mirror.
 This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).

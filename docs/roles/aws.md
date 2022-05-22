@@ -47,7 +47,7 @@ Install aws version 1.13.1 CLI.
       sc_aws_release: "2.0.30"
 ```
 
-### Uninstall openhsift playbook
+### Uninstall aws playbook
 
 Uninstall aws CLI.
 
