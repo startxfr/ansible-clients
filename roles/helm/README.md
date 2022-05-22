@@ -1,6 +1,4 @@
-# STARTX Client - Helm
+# STARTX Client : HELM role
 
-The purpose of this role is to install the helm client from the helm community project.
-This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
-
-You can find the [full documentation](https://startx-ansible-client.readthedocs.io/en/latest/roles/helm) for this role on [startx client readthedocs](https://startx-ansible-client.readthedocs.io/en/latest).
+Read the [startxfr.client.helm role documentation](https://startx-helm-client.readthedocs.io/en/latest/roles/helm/)
+for more information on how to use [STARTX client helm collection](https://galaxy.helm.com/startxfr/sclientxcm) helm role.
