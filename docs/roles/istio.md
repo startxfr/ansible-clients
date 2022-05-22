@@ -47,7 +47,7 @@ Install istioctl version 1.13.1 CLI.
       sc_istio_release: "1.13.3"
 ```
 
-### Uninstall openhsift playbook
+### Uninstall istio playbook
 
 Uninstall istioctl CLI.
 
