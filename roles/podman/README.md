@@ -1,6 +1,4 @@
-# STARTX Client - Podman
+# STARTX Client : Podman role
 
-The purpose of this role is to install the podman client from the podman community project.
-This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
-
-You can find the [full documentation](https://startx-ansible-client.readthedocs.io/en/latest/roles/podman) for this role on [startx client readthedocs](https://startx-ansible-client.readthedocs.io/en/latest).
+Read the [startxfr.client.podman role documentation](https://startx-podman-client.readthedocs.io/en/latest/roles/podman/)
+for more information on how to use [STARTX client podman collection](https://galaxy.podman.com/startxfr/sclientxcm) podman role.

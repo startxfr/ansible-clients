@@ -1,6 +1,4 @@
-# STARTX Client - OKD
+# STARTX Client : OKD role
 
-The purpose of this role is to install the oc and/or kubectl client from RedHat mirror of the OKD community project.
-This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
-
-You can find the [full documentation](https://startx-ansible-client.readthedocs.io/en/latest/roles/okd) for this role on [startx client readthedocs](https://startx-ansible-client.readthedocs.io/en/latest).
+Read the [startxfr.client.okd role documentation](https://startx-okd-client.readthedocs.io/en/latest/roles/okd/)
+for more information on how to use [STARTX client okd collection](https://galaxy.okd.com/startxfr/sclientxcm) okd role.

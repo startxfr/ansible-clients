@@ -1,6 +1,4 @@
-# STARTX Client - Terraform
+# STARTX Client : Terraform role
 
-The purpose of this role is to install the terraform client from the terraform community project.
-This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
-
-You can find the [full documentation](https://startx-ansible-client.readthedocs.io/en/latest/roles/terraform) for this role on [startx client readthedocs](https://startx-ansible-client.readthedocs.io/en/latest).
+Read the [startxfr.client.terraform role documentation](https://startx-terraform-client.readthedocs.io/en/latest/roles/terraform/)
+for more information on how to use [STARTX client terraform collection](https://galaxy.terraform.com/startxfr/sclientxcm) terraform role.
