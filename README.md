@@ -1,8 +1,12 @@
-# STARTX client Ansible collection
+# STARTX Client Ansible collection
 
-This is the main documentation for the `startxfr.client` ansible collection.
+The purpose of this collection is to manage the install-uninstall of various CLI
+into an linux operating-system.
 
-## Roles
+Refer to [latest documentation for the `startxfr.client` ansible collection](https://startx-ansible-client.readthedocs.io)
+for more informations on how to configure and use this top level role.
+
+## Availables roles
 
 - [ocp role](https://startx-ansible-client.readthedocs.io/en/latest/roles/ocp)
 - [okd role](https://startx-ansible-client.readthedocs.io/en/latest/roles/okd)
@@ -17,4 +21,4 @@ This is the main documentation for the `startxfr.client` ansible collection.
 
 ## History
 
-You can find the full history for this collection on [startx client collection history](https://startx-ansible-client.readthedocs.io/en/latest/#history).
+Full history for this collection is available on the [startx client collection history](https://startx-ansible-client.readthedocs.io/en/latest/#history) page.
