@@ -1,8 +1,5 @@
 
 
-# version=0.1.6
-# collection=client
-
 # Generic actions (default is local)
 # all action
 .PHONY: all

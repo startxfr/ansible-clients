@@ -8,7 +8,8 @@
 | 0.1.1   | 22-05-08 | add collection playook examples            |
 | 0.1.3   | 22-05-12 | Align to 0.1.3 all startx collections      |
 | 0.1.5   | 22-05-17 | Improve execution support for OKD/OCP role |
-| 0.1.6   | 22-05-22 | Improve documentation                                 |
+| 0.1.6   | 22-05-22 | Improve documentation                      |
+| 0.1.8   | 22-05-22 | debug documentation generation             |
 
 ## Version 0.0
 

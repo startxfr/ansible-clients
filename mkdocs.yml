@@ -10,21 +10,36 @@ theme:
     - yaml
     - bash
     include_homepage_in_sidebar: false
-pages:
-- ['index.md', 'Introduction']
-- ['roles/ansible.md', 'Ansible role']
-- ['roles/aws.md', 'AWS role']
-- ['roles/git.md', 'Git role']
-- ['roles/helm.md', 'Helm role']
-- ['roles/istio.md', 'Istio role']
-- ['roles/ocp.md', 'OCP (Openshift) role']
-- ['roles/okd.md', 'OKD (Openshift) role']
-- ['roles/podman.md', 'Podman role']
-- ['roles/terraform.md', 'Terraform role']
-- ['roles/vault.md', 'Vault role']
-- ['history.md', 'Client project', 'Release history']
-- ['contributors.md', 'Client project', 'Contributors']
-- ['developpers.md', 'Client project', 'Contributing']
-- ['history.md', 'Client project', 'Release history']
+nav:
+  - Introduction: index.md
+  - Collection roles:
+      - IAAS:
+          - "AWS": roles/aws.md
+      - CAAS:
+          - "Podman": roles/podman.md
+          - "Openshift (OCP)": roles/ocp.md
+          - "Openshift (OKD)": roles/okd.md
+      - PAAS:
+          - "Openshift (OCP)": roles/ocp.md
+          - "Openshift (OKD)": roles/okd.md
+          - "Helm": roles/helm.md
+          - "Istio": roles/istio.md
+          - "Vault": roles/vault.md
+      - Automation:
+          - "Ansible": roles/ansible.md
+          - "Terraform": roles/terraform.md
+      - CLI:
+          - "AWS": roles/aws.md
+          - "Podman": roles/podman.md
+          - "Openshift (OCP)": roles/ocp.md
+          - "Openshift (OKD)": roles/okd.md
+          - "Helm": roles/helm.md
+          - "Istio": roles/istio.md
+          - "Vault": roles/vault.md
+          - "Git": roles/git.md
+  - Collection project:
+      - "Release history": history.md
+      - "Contributors": contributors.md
+      - "Contributing": developpers.md
 markdown_extensions: 
 - smarty
