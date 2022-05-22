@@ -10,10 +10,21 @@ theme:
     - yaml
     - bash
     include_homepage_in_sidebar: false
-# pages:
-# - ['index.md', 'Introduction']
-# - ['releases.md', 'Release', 'Release process']
-# - ['history.md', 'Release', 'Release history']
-# - ['charts/cluster-3scale.md', 'Cluster charts', '3scale']
+pages:
+- ['index.md', 'Introduction']
+- ['roles/ansible.md', 'Ansible role']
+- ['roles/aws.md', 'AWS role']
+- ['roles/git.md', 'Git role']
+- ['roles/helm.md', 'Helm role']
+- ['roles/istio.md', 'Istio role']
+- ['roles/ocp.md', 'OCP (Openshift) role']
+- ['roles/okd.md', 'OKD (Openshift) role']
+- ['roles/podman.md', 'Podman role']
+- ['roles/terraform.md', 'Terraform role']
+- ['roles/vault.md', 'Vault role']
+- ['history.md', 'Client project', 'Release history']
+- ['contributors.md', 'Client project', 'Contributors']
+- ['developpers.md', 'Client project', 'Contributing']
+- ['history.md', 'Client project', 'Release history']
 markdown_extensions: 
 - smarty
