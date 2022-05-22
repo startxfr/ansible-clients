@@ -1,5 +1,11 @@
 # Release history
 
+## Version 0.2
+
+| version | Date     | Description                                |
+| ------- | -------- | ------------------------------------------ |
+| 0.2.0   | 22-05-22 | stable version 0.2.0                       |
+
 ## Version 0.1
 
 | version | Date     | Description                                |
