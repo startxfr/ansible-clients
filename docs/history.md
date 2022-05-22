@@ -2,9 +2,10 @@
 
 ## Version 0.2
 
-| version | Date     | Description                                |
-| ------- | -------- | ------------------------------------------ |
-| 0.2.0   | 22-05-22 | stable version 0.2.0                       |
+| version | Date     | Description                                   |
+| ------- | -------- | --------------------------------------------- |
+| 0.2.0   | 22-05-22 | unstable version 0.2.0 used to align versions |
+| 0.2.1   | 22-05-22 | stable version 0.2.1                          |
 
 ## Version 0.1
 
