@@ -1,8 +1,13 @@
 ---
 - name: "exec : installer : Execute the native openshift-install command"
-  ansible.builtin.shell:
-    cmd: |-
-      {{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }} {{ sc_ocp_exec_cmd | default("version") }}
-    executable: /bin/bash
-    chdir: "{{ sc_ocp_exec_path | default(omit) }}"
+  vars:
+    ## Some very complicated stuff to skip actions if some file exists
+    __args: >-
+      {
+        'executable': '/bin/bash',
+        '{{ sc_ocp_shell_check_action }}: {{ sc_ocp_context }}/metadata.json'
+      }
+  ansible.builtin.shell: >-
+    {{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }} {{ sc_ocp_exec_cmd | default("version") }} --dir {{ sc_ocp_context }}
+  args: "{{ __args }}" # <<<< The magic to skip happens here 
   register: sc_ocp_exec_installer_return
