@@ -19,4 +19,6 @@ sc_ocp_download_baseurl: "https://mirror.openshift.com/pub/openshift-v4/clients/
 # Temporary directory used when downloading binaries
 sc_ocp_download_tmpdir: "/tmp/ocp"
 # Destination of the binary and aliases
-sc_ocp_bin_directory: "/usr/local/bin"
+sc_ocp_bin_directory: "~/.local/bin"
+# ocp execution context
+sc_ocp_context: /your/git/repository
