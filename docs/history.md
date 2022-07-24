@@ -11,6 +11,7 @@
 | 0.2.0   | 22-05-22 | unstable version 0.2.0 used to align versions |
 | 0.2.1   | 22-05-22 | stable version 0.2.1                          |
 | 0.2.9   | 22-07-24 | stable version 0.2.9 preparing 0.3.0 release  |
+| 0.2.10  | 22-07-24 | stable version 0.2.10                         |
 
 ## Version 0.1
 
