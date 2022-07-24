@@ -1,6 +1,6 @@
 # STARTX client Ansible collection
 
-This is the devel documentation for the `startxfr.client` ansible collection.
+This is the main documentation for the `startxfr.client` ansible collection.
 
 ## Roles
 
