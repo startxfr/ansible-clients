@@ -1,13 +1,13 @@
 ### REQUIRED
 namespace: startxfr
 name: client
-version: "0.2.1"
+version: "0.2.9"
 readme: README.md
 license:
 - GPL-2.0-or-later
 description: >-
   Collection of ansible roles used to install command line client used to interact with API based IaaS services
-  such as kubernetes, helm, istio, openshift, git or aws.
+  such as ansible, aws, git, helm, istio, ocp, okd, podman, terraform or vault.
 authors:
 - Christophe LARUE <clarue@startx.fr>
 - Startx dev <dev@startx.fr>

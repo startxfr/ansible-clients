@@ -21,4 +21,4 @@ for more informations on how to configure and use this top level role.
 
 ## History
 
-Full history for this collection is available on the [startx client collection history](https://startx-ansible-client.readthedocs.io/en/latest/#history) page.
+Full history for this collection is available on the [startx client collection history](https://startx-ansible-client.readthedocs.io/en/latest/history) page.
