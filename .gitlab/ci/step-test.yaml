@@ -2,20 +2,20 @@
 ## STAGES
 ##
 
-# include:
-#   - template: Security/Dependency-Scanning.gitlab-ci.yml
-#   - template: Security/License-Scanning.gitlab-ci.yml
-#   - template: Security/SAST.gitlab-ci.yml
-#   - template: DAST.gitlab-ci.yml
-#   # - template: Security/Secret-Detection.gitlab-ci.yml
-# dependency_scanning:
-#   stage: test
+include:
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  # - template: Security/License-Scanning.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  # - template: DAST.gitlab-ci.yml
+  # - template: Security/Secret-Detection.gitlab-ci.yml
+dependency_scanning:
+  stage: test
 # license_scanning:
 #   stage: test
-# sast:
-#   stage: test
-#   variables:
-#     VALIDATE_SCHEMA: "true"
+sast:
+  stage: test
+  variables:
+    VALIDATE_SCHEMA: "true"
 # .secret-analyzer:
 #   stage: test
 
