@@ -1,0 +1,66 @@
+---
+- name: "create : Create temporary directory {{ sc_kustomize_download_tmpdir }}"
+  ansible.builtin.file:
+    path: "{{ sc_kustomize_download_tmpdir }}"
+    state: directory
+    recurse: yes
+- name: "create : Create binary directory {{ sc_kustomize_bin_directory }}"
+  ansible.builtin.file:
+    path: "{{ sc_kustomize_bin_directory }}"
+    state: directory
+    recurse: yes
+  become: "{{ sc_kustomize_become | default(false) }}"
+
+- name: "create : Get latest release from github"
+  uri:
+    url: >-
+      https://api.github.com/repos/kubernetes-sigs/kustomize/releases
+    return_content: yes
+  register: __sc_kustomize_github_releases
+  tags:
+    - create
+    - client
+
+
+- name: "create : Download kustomize binary"
+  vars:
+    test: >-
+      {{ 'equalto' if sc_kustomize_release is defined else 'match' }}
+    value: >-
+      {{ 'kustomize/v' + sc_kustomize_release if sc_kustomize_release is defined else 'kustomize.*' }}
+    __sc_kustomize_github_assets: >-
+        {{ (__sc_kustomize_github_releases.json | selectattr("name", test, value))[0].assets }}
+  ansible.builtin.get_url:
+    url: >-
+      {{  (__sc_kustomize_github_assets
+      | selectattr("browser_download_url", "match", "https.*kustomize_v[\.0-9]*_linux_amd64.*\.tar\.gz"))[0].browser_download_url }}
+    dest: "{{ sc_kustomize_download_tmpdir }}/kustomize-{{ sc_kustomize_release | default('latest') }}.tar.gz"
+    timeout: 600
+    force: true
+    validate_certs: false
+
+- name: "create : Unarchive content into {{ sc_kustomize_download_tmpdir }}"
+  ansible.builtin.unarchive:
+    src: "{{ sc_kustomize_download_tmpdir }}/kustomize-{{ sc_kustomize_release | default('latest') }}.tar.gz"
+    dest: "{{ sc_kustomize_download_tmpdir }}"
+
+- name: "create : Create binary kustomize"
+  ansible.builtin.copy:
+    src: "{{ sc_kustomize_download_tmpdir }}/kustomize"
+    dest: "{{ sc_kustomize_bin_directory }}/kustomize-v{{ sc_kustomize_release | default('latest') }}"
+    mode: u=rwx,g=,o=
+  become: "{{ sc_kustomize_become | default(true) }}"
+
+- name: "create : Symbolic link for kustomize"
+  ansible.builtin.file:
+    src: "{{ sc_kustomize_bin_directory }}/kustomize-v{{ sc_kustomize_release | default('latest')}}"
+    dest: "{{ sc_kustomize_bin_directory }}/kustomize"
+    state: link
+  become: "{{ sc_kustomize_become | default(true) }}"
+  when: 
+    - sc_kustomize_enable_symlink
+
+- name: "create : Remove the temporary files"
+  ansible.builtin.file:
+    path: "{{ sc_kustomize_download_tmpdir }}"
+    state: absent 

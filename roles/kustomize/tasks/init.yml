@@ -1,0 +1,8 @@
+---
+- name: "init : Check if {{ sc_kustomize_bin_directory }}/kustomize-v{{ sc_kustomize_release | default('latest') }} exist"
+  stat:
+    path: "{{ sc_kustomize_bin_directory }}/kustomize-v{{ sc_kustomize_release | default('latest') }}"
+  register: sc_kustomize_stat
+  tags:
+    - init
+    - kustomize
