@@ -1,0 +1,21 @@
+---
+- name: "delete : Delete symbolic link {{ sc_kustomize_bin_directory }}/kustomize"
+  ansible.builtin.file:
+    path: "{{ sc_kustomize_bin_directory }}/kustomize"
+    state: absent
+  become: "{{ sc_kustomize_become | default(true) }}"
+  ignore_errors: yes
+  tags:
+    - delete
+    - clients
+    - kustomize
+- name: "delete : Delete binary {{ sc_kustomize_bin_directory }}/kustomize-v{{ sc_kustomize_release }}"
+  ansible.builtin.file:
+    path: "{{ sc_kustomize_bin_directory }}/kustomize-v{{ sc_kustomize_release }}"
+    state: absent
+  become: "{{ sc_kustomize_become | default(true) }}"
+  ignore_errors: yes
+  tags:
+    - delete
+    - clients
+    - kustomize
