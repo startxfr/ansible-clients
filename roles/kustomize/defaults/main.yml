@@ -1,0 +1,17 @@
+---
+# Action to perfom on this role
+sc_kustomize_action: "create"
+
+# targeted release
+# sc_kustomize_release: "4.5.5"
+# list of binaries to install
+# Create the default binary symlinks
+sc_kustomize_enable_symlink: true
+# Require become privilege
+sc_kustomize_become: true
+
+# Temporary directory used when downloading binaries
+sc_kustomize_download_tmpdir: "/tmp/kustomize"
+# Destination of the binary and aliases
+sc_kustomize_bin_directory: "~/.local/bin"
+
