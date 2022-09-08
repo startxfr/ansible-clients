@@ -1,4 +1,4 @@
-# OCP role
+# Kustomize role
 
 The purpose of this role is to install the kutomize binary from the github releases.
 This role is part of the [STARTX client ansible collection](https://galaxy.ansible.com/startxfr/client).
