@@ -74,8 +74,8 @@
       tags:
         - kubectl
   when: |-
-    (not ocp_details_kubectl.stat.exists and "kubectl" in sc_ocp_binaries) or
-    (not ocp_details_oc.stat.exists and "oc" in sc_ocp_binaries)
+    ("kubectl" in sc_ocp_binaries and not ocp_details_kubectl.stat.exists) or
+    ("oc" in sc_ocp_binaries and not ocp_details_oc.stat.exists)
   tags:
     - create
     - clients
@@ -119,8 +119,8 @@
       tags:
         - installer
   when:
-    - not ocp_details_installer.stat.exists
     - '"installer" in sc_ocp_binaries'
+    - not ocp_details_installer.stat.exists
   tags:
     - create
     - clients
