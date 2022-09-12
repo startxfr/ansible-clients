@@ -24,7 +24,7 @@
         src: "{{ sc_helm_download_tmpdir }}/helm"
         dest: "{{ sc_helm_bin_directory }}/helm-v{{ sc_helm_release }}"
         mode: u=rwx,g=rx,o=rx
-      become: sc_helm_become | default(true)
+      become: "{{ sc_helm_become | default(true) }}"
       when: not helm_bin_details.stat.exists
       tags:
         - helm
@@ -33,7 +33,7 @@
         src: "{{ sc_helm_bin_directory }}/helm-v{{ sc_helm_release }}"
         dest: "{{ sc_helm_bin_directory }}/helm"
         state: link
-      become: sc_helm_become | default(true)
+      become: "{{ sc_helm_become | default(true) }}"
       when: sc_helm_enable_symlink
       tags:
         - helm
