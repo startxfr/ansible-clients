@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ../ocp
+      vars:
+        sc_kustomize_action: "{{ item }}"
+        sc_kustomize_release: "4.5.5"
+      loop:
+      - create
+      - delete
+      tags:
+        - create
