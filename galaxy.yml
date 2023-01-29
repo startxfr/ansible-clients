@@ -15,7 +15,8 @@ tags:
 - startx
 - client
 - api
-dependencies: {}
+dependencies:
+  "community.general": ">=5.3.0"
 repository: https://gitlab.com/startx1/ansible/client
 documentation: https://startx-ansible-client.readthedocs.io
 homepage: https://startx-ansible-client.readthedocs.io/
