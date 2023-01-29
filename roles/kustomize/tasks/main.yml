@@ -1,0 +1,16 @@
+---
+- name: Initialize ansible context
+  import_tasks: "init.yml"
+  tags:
+    - always
+    - init
+- name: Create openshift context
+  import_tasks: "create.yml"
+  when: sc_kustomize_action == "create"
+  tags:
+    - create
+- name: Delete openshift context
+  import_tasks: "delete.yml"
+  when: sc_kustomize_action == "delete"
+  tags:
+    - delete

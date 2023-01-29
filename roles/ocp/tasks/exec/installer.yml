@@ -5,9 +5,10 @@
     __args: >-
       {
         'executable': '/bin/bash',
-        '{{ sc_ocp_shell_check_action }}: {{ sc_ocp_context }}/metadata.json'
+        '{{ sc_ocp_shell_check_action }}': '{{ sc_ocp_context }}/metadata.json'
       }
   ansible.builtin.shell: >-
     {{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }} {{ sc_ocp_exec_cmd | default("version") }} --dir {{ sc_ocp_context }}
   args: "{{ __args }}" # <<<< The magic to skip happens here 
   register: sc_ocp_exec_installer_return
+  no_log: true
