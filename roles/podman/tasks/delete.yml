@@ -1,9 +1,9 @@
 ---
-- name: "delete : Uninstall podman{% if (sc_podman_release and sc_podman_release != "latest") %}-{{ sc_podman_release }}{% endif %} package"
+- name: "delete : Uninstall podman{% if (sc_podman_release and sc_podman_release != 'latest') %}-{{ sc_podman_release }}{% endif %} package"
   ansible.builtin.package: 
-    name: "podman{% if (sc_podman_release and sc_podman_release != "latest") %}-{{ sc_podman_release }}{% endif %}"
+    name: "podman{% if (sc_podman_release and sc_podman_release != 'latest') %}-{{ sc_podman_release }}{% endif %}"
     state: absent
-  become: yes
+  become: true
   when: podman_bin_details.rc == 0
   tags:
     - delete

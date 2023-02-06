@@ -6,9 +6,9 @@
         path: "{{ sc_aws_download_tmpdir }}"
         state: directory
         recurse: yes
-    - name: "create : Download clients from {{ sc_aws_download_baseurl }}/awscli-exe-linux-x86_64{% if (sc_aws_release and sc_aws_release != "latest") %}-{{ sc_aws_release }}{% endif %}.zip"
+    - name: "create : Download clients from {{ sc_aws_download_baseurl }}/awscli-exe-linux-x86_64{% if (sc_aws_release and sc_aws_release != 'latest') %}-{{ sc_aws_release }}{% endif %}.zip"
       ansible.builtin.get_url: 
-        url: "{{ sc_aws_download_baseurl }}/awscli-exe-linux-x86_64{% if (sc_aws_release and sc_aws_release != "latest") %}-{{ sc_aws_release }}{% endif %}.zip"
+        url: "{{ sc_aws_download_baseurl }}/awscli-exe-linux-x86_64{% if (sc_aws_release and sc_aws_release != 'latest') %}-{{ sc_aws_release }}{% endif %}.zip"
         dest: "{{ sc_aws_download_tmpdir }}/awscli-{{ sc_aws_release }}.zip"
         timeout: 600
         force: true

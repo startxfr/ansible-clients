@@ -6,14 +6,14 @@
     owner: root
     mode: 0644
     group: root
-  become: yes
+  become: true
   when: ansible_os_family == "RedHat"
 
-- name: "create : Install vault{% if (sc_vault_release and sc_vault_release != "latest") %}-{{ sc_vault_release }}{% endif %} package"
+- name: "create : Install vault{% if (sc_vault_release and sc_vault_release != 'latest') %}-{{ sc_vault_release }}{% endif %} package"
   ansible.builtin.package: 
-    name: "vault{% if (sc_vault_release and sc_vault_release != "latest") %}-{{ sc_vault_release }}{% endif %}"
+    name: "vault{% if (sc_vault_release and sc_vault_release != 'latest') %}-{{ sc_vault_release }}{% endif %}"
     state: present
-  become: yes
+  become: true
   when: vault_bin_details.rc != 0
   tags:
     - create

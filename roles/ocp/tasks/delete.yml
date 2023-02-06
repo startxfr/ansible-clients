@@ -4,7 +4,7 @@
     path: "{{ sc_ocp_bin_directory }}/oc"
     state: absent
   become: "{{ sc_ocp_become | default(true) }}"
-  ignore_errors: yes
+  ignore_errors: true
   when: >
     "oc" in sc_ocp_binaries
   tags:
@@ -17,7 +17,7 @@
     path: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
     state: absent
   become: "{{ sc_ocp_become | default(true) }}"
-  ignore_errors: yes
+  ignore_errors: true
   when: >
     "oc" in sc_ocp_binaries
   tags:
@@ -30,7 +30,7 @@
     path: "{{ sc_ocp_bin_directory }}/kubectl"
     state: absent
   become: "{{ sc_ocp_become | default(true) }}"
-  ignore_errors: yes
+  ignore_errors: true
   when: >
     "kubectl" in sc_ocp_binaries
   tags:
@@ -43,7 +43,7 @@
     path: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
     state: absent
   become: "{{ sc_ocp_become | default(true) }}"
-  ignore_errors: yes
+  ignore_errors: true
   when: >
     "kubectl" in sc_ocp_binaries
   tags:
@@ -56,7 +56,7 @@
     path: "{{ sc_ocp_bin_directory }}/openshift-install"
     state: absent
   become: "{{ sc_ocp_become | default(true) }}"
-  ignore_errors: yes
+  ignore_errors: true
   when: >
     "installer" in sc_ocp_binaries
   tags:
@@ -69,7 +69,7 @@
     path: "{{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }}"
     state: absent
   become: "{{ sc_ocp_become | default(true) }}"
-  ignore_errors: yes
+  ignore_errors: true
   when: >
     "installer" in sc_ocp_binaries
   tags:

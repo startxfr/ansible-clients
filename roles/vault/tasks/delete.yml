@@ -1,9 +1,9 @@
 ---
-- name: "delete : Uninstall vault{% if (sc_vault_release and sc_vault_release != "latest") %}-{{ sc_vault_release }}{% endif %} package"
+- name: "delete : Uninstall vault{% if (sc_vault_release and sc_vault_release != 'latest') %}-{{ sc_vault_release }}{% endif %} package"
   ansible.builtin.package: 
-    name: "vault{% if (sc_vault_release and sc_vault_release != "latest") %}-{{ sc_vault_release }}{% endif %}"
+    name: "vault{% if (sc_vault_release and sc_vault_release != 'latest') %}-{{ sc_vault_release }}{% endif %}"
     state: absent
-  become: yes
+  become: true
   when: vault_bin_details.rc == 0
   tags:
     - delete

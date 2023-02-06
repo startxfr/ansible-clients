@@ -1,9 +1,9 @@
 ---
-- name: "create : Install ansible{% if (sc_ansible_release and sc_ansible_release != "latest") %}-{{ sc_ansible_release }}{% endif %} package"
+- name: "create : Install ansible{% if (sc_ansible_release and sc_ansible_release != 'latest') %}-{{ sc_ansible_release }}{% endif %} package"
   ansible.builtin.package: 
-    name: "ansible{% if (sc_ansible_release and sc_ansible_release != "latest") %}-{{ sc_ansible_release }}{% endif %}"
+    name: "ansible{% if (sc_ansible_release and sc_ansible_release != 'latest') %}-{{ sc_ansible_release }}{% endif %}"
     state: present
-  become: yes
+  become: true
   when: ansible_bin_details.rc != 0
   tags:
     - create
