@@ -6,6 +6,7 @@ into an linux operating-system.
 Refer to [latest documentation for the `startxfr.client` ansible collection](https://startx-ansible-client.readthedocs.io)
 for more informations on how to configure and use this top level role.
 
+<<<<<<< HEAD
 ## Availables roles
 
 - [ocp role](https://startx-ansible-client.readthedocs.io/en/latest/roles/ocp)
@@ -22,3 +23,6 @@ for more informations on how to configure and use this top level role.
 ## History
 
 Full history for this collection is available on the [startx client collection history](https://startx-ansible-client.readthedocs.io/en/latest/history) page.
+=======
+- [ocp role](roles/ocp/README.md)
+>>>>>>> 1e2fef91d7d6d1d2634f85d1a7f983aa7e624fb9

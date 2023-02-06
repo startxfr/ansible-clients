@@ -11,6 +11,7 @@
     - delete
     - clients
     - oc
+
 - name: "delete : Delete binary {{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/oc-v{{ sc_ocp_release }}"
@@ -23,6 +24,7 @@
     - delete
     - clients
     - oc
+
 - name: "delete : Delete symbolic link {{ sc_ocp_bin_directory }}/kubectl"
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/kubectl"
@@ -35,6 +37,7 @@
     - delete
     - clients
     - kubectl
+
 - name: "delete : Delete binary {{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/kubectl-v{{ sc_ocp_release }}"
@@ -47,6 +50,7 @@
     - delete
     - clients
     - kubectl
+
 - name: "delete : Delete symbolic link {{ sc_ocp_bin_directory }}/openshift-install"
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/openshift-install"
@@ -59,6 +63,7 @@
     - delete
     - clients
     - installer
+
 - name: "delete : Delete binary {{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }}"
   ansible.builtin.file:
     path: "{{ sc_ocp_bin_directory }}/openshift-install-v{{ sc_ocp_release }}"
