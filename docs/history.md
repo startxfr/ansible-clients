@@ -13,7 +13,7 @@
 | 0.2.9   | 22-07-24 | stable version 0.2.9 preparing 0.3.0 release  |
 | 0.2.10  | 22-07-24 | stable version 0.2.10                         |
 | 0.2.11  | 22-07-24 | unstable version with CI/CD release toolchain |
-| 0.2.12  | 23-01-30 | debug the latest syntax check error           |
+| 0.2.13  | 23-01-30 | debug the latest syntax check error           |
 
 ## Version 0.1
 
